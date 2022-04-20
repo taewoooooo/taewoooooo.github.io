@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- Chrome, Firefox OS and Opera Status Bar Color -->
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+<link rel="stylesheet" type="text/css" href="css/SourceSansPro.css">
+<link rel="stylesheet" type="text/css" href="css/theme.css">
+<link rel="stylesheet" type="text/css" href="css/notablog.css">
+<!-- Favicon -->
+
+  <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;📖&lt;/text&gt;&lt;/svg&gt;">
+
+<style>
+  :root {
+    font-size: 20px;
+  }
+</style>
+  <title>Webpack&nbsp;|&nbsp;Notablog</title>
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="Webpack">
+  
+  
+  <style>
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+  <a href="index.html">
+    <div class="Navbar__Btn">
+      
+        <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;📖&lt;/text&gt;&lt;/svg&gt;"></span>&nbsp;
+      
+      <span>Home</span>
+    </div>
+  </a>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <span class="Navbar__Delim">&centerdot;</span>
+      <a href="about.html">
+        <div class="Navbar__Btn">
+          
+            <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;😀&lt;/text&gt;&lt;/svg&gt;"></span>&nbsp;
+          
+          <span>About</span>
+        </div>
+      </a>
+    
+  
+    
+  
+</nav>
+  <header class="Header">
+    
+    <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+    
+    <h1 class="Header__Title">Webpack</h1>
+    
+      <div class="DateTagBar">
+        
+          <span class="DateTagBar__Item DateTagBar__Date">Posted on Fri, Apr 8, 2022</span>
+        
+        
+      </div>
+    
+  </header>
+  <article id="https://www.notion.so/cd85d4bce5b849a98334e7bef57e1dde" class="PageRoot"><div id="https://www.notion.so/a024945032374cc49c363542c14f3ceb" class="ColorfulBlock ColorfulBlock--ColorGray Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="http://www.woc12138.com/article/45">http://www.woc12138.com/article/45</a></span></span></p></div><ul id="https://www.notion.so/c38b257119fe41f9b54885297eaabf9a" class="ColorfulBlock ColorfulBlock--BgGreen TableOfContents"><li class="TableOfContents__Item"><a href="#https://www.notion.so/babc337488394bb6bab42a19d56db296"><div style="margin-left:0px"><span class="SemanticStringArray"><span class="SemanticString">一、Webpack 简介</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/8b0caed132214a25819b785f6801d58d"><div style="margin-left:24px"><span class="SemanticStringArray"><span class="SemanticString">1.1 webpack 是什么</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/bd5e05ca8caa4baeb3bea168f32b4b5e"><div style="margin-left:24px"><span class="SemanticStringArray"><span class="SemanticString">1.2 webpack 五个核心概念</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/5c17a545ffc64838b8d2f6ec234a438b"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">1.2.1 Entry</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/8ac92b7fb49c4086afb15ea0bacfbae7"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">1.2.2 Output</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/cae17ea2d0b14fc6abeb6fcb92dce19c"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">1.2.3 Loader</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/33ede6aa2b6f4b1b9854c75c6cf069f8"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">1.2.4 Plugins</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/a907cf5459974f6585092c27437bb9c5"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">1.2.5 Mode</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/548ee590a1334b78b600c89b844f0daf"><div style="margin-left:24px"><span class="SemanticStringArray"><span class="SemanticString">二、Webpack 初体验</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/c23dabc669b448a0b4eedaa1e42dfe1a"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">2.1 初始化配置</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/2cfcd73dc208452697984f9b0da6572e"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">2.2 编译打包应用</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/c1ebee91c9854e34a216d262f2c43933"><div style="margin-left:24px"><span class="SemanticStringArray"><span class="SemanticString">三、Webpack 开发环境的基本配置</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/b0bd791e7468426dbcc76127daa88b21"><div style="margin-left:24px"><span class="SemanticStringArray"><span class="SemanticString">四、Webpack 生产环境的基本配置</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/756c9335d1f943c1a90b42a4524b6927"><div style="margin-left:24px"><span class="SemanticStringArray"><span class="SemanticString">五、Webpack 优化配置</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/ec9affacbb5b4306b106049e6c9b1331"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">5.1 开发环境性能优化</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/0255531b54e64bc68be6a45c784bad8a"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.1.1 HMR（模块热替换）</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/3cda2848eb974352a57e466f6d56769e"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.1.2 source-map</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/b2b422b6783b43be9597018f6a9da1e1"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">5.2 生产环境性能优化</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/fdf6764766304e01bb7cc50c1e5b3812"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.1 优化打包构建速度</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/aaabcd222c9a4e11a71a1ac4b644fe15"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.1.1 oneOf</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/cfa79de450e44ac9b2959e5007387ed3"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.1.2 babel 缓存</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/60794bfd2e8e4e6996cda4aa6dcceb37"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.1.3 多进程打包</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/095ec71308944c539ef0f2ab02e2ac0a"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.1.4 externals</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/30147aca9274464994fb743fad204eeb"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.1.5 dll</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/01ea142d53df4c6aadb54a8aab91ae9e"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.2 优化代码运行的性能</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/346fec717a0b4f62ac306dff141f9936"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.2.1 缓存</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/77ff7d7a8db34758b4c02803fd71af23"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.2.2 tree shaking（树摇）</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/dc8976c2b5dc40f7b2b003282002b93a"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.2.3 code split（代码分割）</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/f1cafa316d394e5da33264f07431d379"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.2.4 lazy loading（懒加载/预加载）</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/efb293a12e184a969431d732f0c023da"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">5.2.2.5 pwa（离线可访问技术）</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/2b104433d8714432ae9715bd93fbc565"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">六、Webpack 配置详情</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/e16b10b57b6e43789d67590335f2183b"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">6.1 entry</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/95d0cccdb6d34c5488a1d841281b484e"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">6.2 output</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/8aacbc03f00c4624b9f95a0f70741b4a"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">6.3 module</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/d5811fcd800644dcac06c66ded25879f"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">6.4 resolve</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/6bd5e905454c4a319a2a116cba81647c"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">6.5 dev server</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/4dab20c808c94216821834d8d617ca60"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">6.6 optimization</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/40b3da4a04234ad980e1f86c46440aa0"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">七、Webpack5 介绍和使用</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/fa9a3bf700c4480bb2c69cbe14a230c0"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">下载</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/ef7209236f334e68abd535ca04359b17"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">自动删除 Node.js Polyfills</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/567c44d59e514f81a86ff001ce772202"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">Chunk ID</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/9aa71c1e182049ce94e2d6f89bd31d76"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">Tree Shaking</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/9768c196d69245828150026cebfa2b1b"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">Output</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/acc0bb20ff5e4f4ea364ad29315e3fef"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">Caching</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/582761936ab649d68f1744fb40d5c7ef"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">监视输出文件</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/b3fc003d166047479efe7f9dbfabb932"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">默认值</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/72e3e427e2dc4780986a928e75a0d433"><div style="margin-left:72px"><span class="SemanticStringArray"><span class="SemanticString">更多内容</span></span></div></a></li><li class="TableOfContents__Item"><a href="#https://www.notion.so/7781c6d5be0e4c3d96698b47012fc2df"><div style="margin-left:48px"><span class="SemanticStringArray"><span class="SemanticString">参考</span></span></div></a></li></ul><h1 id="https://www.notion.so/babc337488394bb6bab42a19d56db296" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/babc337488394bb6bab42a19d56db296"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">一、Webpack 简介</span></span></h1><h2 id="https://www.notion.so/8b0caed132214a25819b785f6801d58d" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/8b0caed132214a25819b785f6801d58d"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.1 webpack 是什么</span></span></h2><div id="https://www.notion.so/9290f4807c9a4887817a982de3f4fec7" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack 是一种</span><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">前端资源构建工具</strong></span><span class="SemanticString">，一个静态模块打包器(module bundler)。</span></span></p></div><div id="https://www.notion.so/e68e5b37ef7d4831bf1700b7f4c916fe" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">在webpack 看来, 前端的所有资源文件(js/json/css/img/less/...)都会作为模块处理。
+它将根据模块的依赖关系进行静态分析，打包生成对应的静态资源(bundle)。</span></span></p></div><h2 id="https://www.notion.so/bd5e05ca8caa4baeb3bea168f32b4b5e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/bd5e05ca8caa4baeb3bea168f32b4b5e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.2 webpack 五个核心概念</span></span></h2><h3 id="https://www.notion.so/5c17a545ffc64838b8d2f6ec234a438b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/5c17a545ffc64838b8d2f6ec234a438b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.2.1 Entry</span></span></h3><div id="https://www.notion.so/4c50462ef5fb4bf1a6d6423a3924a52d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">入口(Entry)：指示 webpack 以哪个文件为入口起点开始打包，分析构建内部依赖图。</span></span></p></div><h3 id="https://www.notion.so/8ac92b7fb49c4086afb15ea0bacfbae7" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/8ac92b7fb49c4086afb15ea0bacfbae7"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.2.2 Output</span></span></h3><div id="https://www.notion.so/49ed3788d6ce42749c169bcd446556c5" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">输出(Output)：指示 webpack 打包后的资源 bundles 输出到哪里去，以及如何命名。</span></span></p></div><h3 id="https://www.notion.so/cae17ea2d0b14fc6abeb6fcb92dce19c" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/cae17ea2d0b14fc6abeb6fcb92dce19c"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.2.3 Loader</span></span></h3><div id="https://www.notion.so/518ac2edf2294fe4ba56a773704661a5" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Loader：让 webpack 能够去处理那些非 JS 的文件，比如样式文件、图片文件(webpack 自身只理解
+JS)</span></span></p></div><h3 id="https://www.notion.so/33ede6aa2b6f4b1b9854c75c6cf069f8" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/33ede6aa2b6f4b1b9854c75c6cf069f8"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.2.4 Plugins</span></span></h3><div id="https://www.notion.so/7fd45a1bbb814473acd8a5fa8658d2b9" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">插件(Plugins)：可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，
+一直到重新定义环境中的变量等。</span></span></p></div><h3 id="https://www.notion.so/a907cf5459974f6585092c27437bb9c5" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/a907cf5459974f6585092c27437bb9c5"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">1.2.5 Mode</span></span></h3><div id="https://www.notion.so/dfcbab09649e4a2da8bf28111a7d717a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">模式(Mode)：指示 webpack 使用相应模式的配置。</span></span></p></div><h1 id="https://www.notion.so/548ee590a1334b78b600c89b844f0daf" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/548ee590a1334b78b600c89b844f0daf"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">二、Webpack 初体验</span></span></h1><h2 id="https://www.notion.so/c23dabc669b448a0b4eedaa1e42dfe1a" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/c23dabc669b448a0b4eedaa1e42dfe1a"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">2.1 初始化配置</span></span></h2><ol class="NumberedListWrapper"><li id="https://www.notion.so/6c8e237e89dc49458bb8b5748d2ccb69" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">初始化 package.json：npm init</span></span></li><li id="https://www.notion.so/3079ccecf297480da2f35481d8cd1527" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">下载安装webpack：(webpack4以上的版本需要全局/本地都安装webpack-cli)  </span></span><div id="https://www.notion.so/e986bb81d8374d9892a99c78d9ed4697" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">全局安装：cnpm i webpack webpack-cli -g</span></span></p></div><div id="https://www.notion.so/6311a4f4f0494ea3890e337b95fe7474" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">本地安装：cnpm i webpack webpack-cli -D</span></span></p></div></li></ol><h2 id="https://www.notion.so/2cfcd73dc208452697984f9b0da6572e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/2cfcd73dc208452697984f9b0da6572e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">2.2 编译打包应用</span></span></h2><div id="https://www.notion.so/94273e37472147508562ef12695e6c2d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">创建 src 下的 js 等文件后，不需要配置 webpack.config.js 文件，在命令行就可以编译打包。</span></span></p></div><div id="https://www.notion.so/bde2e4e9f21e4f34b21daa8e227a3cd0" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">指令：</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/05ae34fecc0d4519b2cb28463e31fc66" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">开发环境：webpack ./src/index.js -o ./build/built.js --mode=development </span></span><div id="https://www.notion.so/4cdd258604244b87a692b84cd9c9cfcc" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/built.js 整体打包环境，是开发环境</span></span></p></div></li><li id="https://www.notion.so/5912e5b9ebca46c7b891cb1068371fe3" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">生产环境：webpack ./src/index.js -o ./build/built.js --mode=production </span></span><div id="https://www.notion.so/f07d2d66016347dd85b19f92107d6daa" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/built.js 整体打包环境，是生产环境</span></span></p></div></li></ul><div id="https://www.notion.so/456966798448432aa2b78f09de186665" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">结论：</span></span></p></div><ol class="NumberedListWrapper"><li id="https://www.notion.so/fec385f8b8184e20bdbbf45a582391c7" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">webpack 本身能处理 js/json 资源，不能处理 css/img 等其他资源</span></span></li><li id="https://www.notion.so/a7d56e4370ab42088fa0758ede1cdee0" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">生产环境和开发环境将 ES6 模块化编译成浏览器能识别的模块化，但是不能处理 ES6 的基本语法转化为 ES5（需要借助 loader）</span></span></li><li id="https://www.notion.so/66f86751d9614cbdab9f3f3035e0fb6d" class="NumberedList" value="3"><span class="SemanticStringArray"><span class="SemanticString">生产环境比开发环境多一个压缩 js 代码</span></span></li></ol><h1 id="https://www.notion.so/c1ebee91c9854e34a216d262f2c43933" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/c1ebee91c9854e34a216d262f2c43933"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">三、Webpack 开发环境的基本配置</span></span></h1><div id="https://www.notion.so/9b5628350173467b972a45d7dbb44d16" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack.config.js 是 webpack 的配置文件。</span></span></p></div><div id="https://www.notion.so/a52ff141ccda429b94ae01509e3802a9" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">作用: 指示 webpack 干哪些活（当你运行 webpack 指令时，会加载里面的配置）</span></span></p></div><div id="https://www.notion.so/be9f5fd055fe4cc6ab45f595e0799907" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">所有构建工具都是基于 nodejs 平台运行的，模块化默认采用 commonjs。</span></span></p></div><div id="https://www.notion.so/5729dbb9f0ae453090f8ca4388c7858f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">开发环境配置主要是为了能让代码运行。主要考虑以下几个方面：</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/bc42294e1a3946e3baed7c44d627acf9" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">打包样式资源</span></span></li><li id="https://www.notion.so/fe4aff6cdfc74e45930b4bc40fa0900b" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">打包 html 资源</span></span></li><li id="https://www.notion.so/1c8779fc6b01433d8e59ef08a672486b" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">打包图片资源</span></span></li><li id="https://www.notion.so/262c1d61d2ad4e9fa98aa277f2bd0a30" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">打包其他资源</span></span></li><li id="https://www.notion.so/c9c7821c59c54977b9d5227d10f60cf2" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">devServer</span></span></li></ul><div id="https://www.notion.so/0642a9216ec546958b0c2638d712b3a1" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">下面是一个简单的开发环境webpack.confg.js配置文件</span></span></p></div><pre id="https://www.notion.so/0e804c41219d4cec8c97086381b25ed9" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token comment">// resolve用来拼接绝对路径的方法</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'html-webpack-plugin'</span><span class="token punctuation">)</span> <span class="token comment">// 引用plugin</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// webpack配置</span>
+  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token string">'./src/js/index.js'</span><span class="token punctuation">,</span> <span class="token comment">// 入口起点</span>
+  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 输出</span>
+    <span class="token comment">// 输出文件名</span>
+    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'js/build.js'</span><span class="token punctuation">,</span>
+    <span class="token comment">// __dirname是nodejs的变量，代表当前文件的目录绝对路径</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// 输出路径，所有资源打包都会输出到这个文件夹下</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// loader配置</span>
+  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token comment">// 详细的loader配置</span>
+      <span class="token comment">// 不同文件必须配置不同loader处理</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// 匹配哪些文件</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.less$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token comment">// 使用哪些loader进行处理</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token comment">// use数组中loader执行顺序：从右到左，从下到上，依次执行(先执行css-loader)</span>
+          <span class="token comment">// style-loader：创建style标签，将js中的样式资源插入进去，添加到head中生效</span>
+          <span class="token string">'style-loader'</span><span class="token punctuation">,</span>
+          <span class="token comment">// css-loader：将css文件变成commonjs模块加载到js中，里面内容是样式字符串</span>
+          <span class="token string">'css-loader'</span><span class="token punctuation">,</span>
+          <span class="token comment">// less-loader：将less文件编译成css文件，需要下载less-loader和less</span>
+          <span class="token string">'less-loader'</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css-loader'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// url-loader：处理图片资源，问题：默认处理不了html中的img图片</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(jpg|png|gif|jpeg)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token comment">// 需要下载 url-loader file-loader</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'url-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 图片大小小于8kb，就会被base64处理，优点：减少请求数量（减轻服务器压力），缺点：图片体积会更大（文件请求速度更慢）</span>
+          <span class="token comment">// base64在客户端本地解码所以会减少服务器压力，如果图片过大还采用base64编码会导致cpu调用率上升，网页加载时变卡</span>
+          <span class="token literal-property property">limit</span><span class="token operator">:</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">,</span>
+          <span class="token comment">// 给图片重命名，[hash:10]：取图片的hash的前10位，[ext]：取文件原来扩展名</span>
+          <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'[hash:10].[ext]'</span><span class="token punctuation">,</span>
+          <span class="token comment">// 问题：因为url-loader默认使用es6模块化解析，而html-loader引入图片是conmonjs，解析时会出问题：[object Module]</span>
+          <span class="token comment">// 解决：关闭url-loader的es6模块化，使用commonjs解析</span>
+          <span class="token literal-property property">esModule</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">outputPath</span><span class="token operator">:</span> <span class="token string">'imgs'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.html$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token comment">// 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'html-loader'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">// 打包其他资源(除了html/js/css资源以外的资源)</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// 排除html|js|css|less|jpg|png|gif文件</span>
+        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(html|js|css|less|jpg|png|gif)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token comment">// file-loader：处理其他文件</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'file-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'[hash:10].[ext]'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">outputPath</span><span class="token operator">:</span> <span class="token string">'media'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// plugin的配置</span>
+  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// html-webpack-plugin：默认会创建一个空的html文件，自动引入打包输出的所有资源（JS/CSS）</span>
+    <span class="token comment">// 需要有结构的HTML文件可以加一个template</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token comment">// 复制这个./src/index.html文件，并自动引入打包输出的所有资源（JS/CSS）</span>
+      <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'./src/index.html'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// 模式</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'development'</span><span class="token punctuation">,</span> <span class="token comment">// 开发模式</span>
+  <span class="token comment">// 开发服务器 devServer：用来自动化，不用每次修改后都重新输入webpack打包一遍（自动编译，自动打开浏览器，自动刷新浏览器）</span>
+  <span class="token comment">// 特点：只会在内存中编译打包，不会有任何输出（不会像之前那样在外面看到打包输出的build包，而是在内存中，关闭后会自动删除）</span>
+  <span class="token comment">// 启动devServer指令为：npx webpack-dev-server</span>
+  <span class="token literal-property property">devServer</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 项目构建后路径</span>
+    <span class="token literal-property property">contentBase</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// 启动gzip压缩</span>
+    <span class="token literal-property property">compress</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// 端口号</span>
+    <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+    <span class="token comment">// 自动打开浏览器</span>
+    <span class="token literal-property property">open</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</span></span></span></code></pre><div id="https://www.notion.so/783e0e9446734b13bc686a50f20b9fe6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">其中，大部分配置都在注释中给出解释。</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/56b162a3e73049f88475c6e826bcc121" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">运行项目的两个指令：webpack 会将打包结果输出出去（build文件夹） npx webpack-dev-server 只会在内存中编译打包，没有输出</span></span></li><li id="https://www.notion.so/c75967194dbf4927a495023bf19a545c" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">loader 和 plugin 的不同：（plugin 一定要先引入才能使用）  </span></span><div id="https://www.notion.so/ce588bd514f843e1affaacff0c175ff4" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">​ loader：1. 下载 2. 使用（配置 loader）</span></span></p></div><div id="https://www.notion.so/832fdf5cb8a6475cb8dbe6ee67b0d6b1" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">​ plugins：1.下载 2. 引入 3. 使用</span></span></p></div></li></ul><h1 id="https://www.notion.so/b0bd791e7468426dbcc76127daa88b21" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/b0bd791e7468426dbcc76127daa88b21"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">四、Webpack 生产环境的基本配置</span></span></h1><div id="https://www.notion.so/d7def548a229468a82eddb3c6cc965df" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">而生产环境的配置需要考虑以下几个方面：</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/d3ab98e3cdeb446887db3e65e617191f" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">提取 css 成单独文件</span></span></li><li id="https://www.notion.so/64a3f6d670634e7a869b90dfe7b74dbc" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">css 兼容性处理</span></span></li><li id="https://www.notion.so/2ed91df5b1c74390a90eaffca010a506" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">压缩 css</span></span></li><li id="https://www.notion.so/5ad55dccb0284e8bbffff9c4c070f103" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">js 语法检查</span></span></li><li id="https://www.notion.so/97d832c504f44be59ecd0d17c7afe0e8" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">js 兼容性处理</span></span></li><li id="https://www.notion.so/ade83f6245b44264a657a7b8bac6c6b8" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">js 压缩</span></span></li><li id="https://www.notion.so/bbae9e8655fc4949b76ddcade8c0b39e" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">html 压缩</span></span></li></ul><div id="https://www.notion.so/5b3dcc7247544e51a2aef373660ed629" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">下面是一个基本的生产环境下的webpack.config.js配置</span></span></p></div><pre id="https://www.notion.so/3bb66163b6b340989f9ae39f4bc1ca50" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token keyword">const</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> MiniCssExtractorPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mini-css-extract-plugin'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> OptimiziCssAssetsWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'optimizi-css-assets-webpack-plugin'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'html-webpack-plugin'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 定义node.js的环境变量，决定使用browserslist的哪个环境</span>
+process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">=</span> <span class="token string">'production'</span>
+
+<span class="token comment">// 复用loader的写法</span>
+<span class="token keyword">const</span> commonCssLoader <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment">// 这个loader取代style-loader。作用：提取js中的css成单独文件然后通过link加载</span>
+  MiniCssExtractPlugin<span class="token punctuation">.</span>loader<span class="token punctuation">,</span>
+  <span class="token comment">// css-loader：将css文件整合到js文件中</span>
+  <span class="token comment">// 经过css-loader处理后，样式文件是在js文件中的</span>
+  <span class="token comment">// 问题：1.js文件体积会很大2.需要先加载js再动态创建style标签，样式渲染速度就慢，会出现闪屏现象</span>
+  <span class="token comment">// 解决：用MiniCssExtractPlugin.loader替代style-loader</span>
+  <span class="token string">'css-loader'</span><span class="token punctuation">,</span>
+  <span class="token comment">/*
+    postcss-loader：css兼容性处理：postcss --> 需要安装：postcss-loader postcss-preset-env
+    postcss需要通过package.json中browserslist里面的配置加载指定的css兼容性样式
+    在package.json中定义browserslist：
+    "browserslist": {
+      // 开发环境 --> 设置node环境变量：process.env.NODE_ENV = development
+      "development": [ // 只需要可以运行即可
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ],
+      // 生产环境。默认是生产环境
+      "production": [ // 需要满足绝大多数浏览器的兼容
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ]
+    },
+  */</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'postcss-loader'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">ident</span><span class="token operator">:</span> <span class="token string">'postcss'</span><span class="token punctuation">,</span> <span class="token comment">// 基本写法</span>
+      <span class="token function-variable function">plugins</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">[</span>
+        <span class="token comment">// postcss的插件</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'postcss-preset-env'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token string">'./src/js/index.js'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'js/built.js'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token operator">...</span>commonCssLoader<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.less$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token operator">...</span>commonCssLoader<span class="token punctuation">,</span> <span class="token string">'less-loader'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">/*
+        正常来讲，一个文件只能被一个loader处理
+        当一个文件要被多个loader处理，那么一定要指定loader执行的先后顺序
+        先执行eslint再执行babel（用enforce）
+      */</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">/*
+          js的语法检查： 需要下载 eslint-loader eslint
+          注意：只检查自己写的源代码，第三方的库是不用检查的
+          airbnb(一个流行的js风格) --> 需要下载 eslint-config-airbnb-base eslint-plugin-import
+          设置检查规则：
+            package.json中eslintConfig中设置
+              "eslintConfig": {
+                "extends": "airbnb-base"， // 继承airbnb的风格规范
+                "env": {
+                  "browser": true // 可以使用浏览器中的全局变量(使用window不会报错)
+                }
+              }
+        */</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token comment">// 忽略node_modules</span>
+        <span class="token literal-property property">enforce</span><span class="token operator">:</span> <span class="token string">'pre'</span><span class="token punctuation">,</span> <span class="token comment">// 优先执行</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'eslint-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 自动修复</span>
+          <span class="token literal-property property">fix</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">/*
+        js兼容性处理：需要下载 babel-loader @babel/core
+          1. 基本js兼容性处理 --> @babel/preset-env
+            问题：只能转换基本语法，如promise高级语法不能转换
+          2. 全部js兼容性处理 --> @babel/polyfill
+            问题：只要解决部分兼容性问题，但是将所有兼容性代码全部引入，体积太大了
+          3. 需要做兼容性处理的就做：按需加载  --> core-js
+      */</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// 第三种方式：按需加载</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 预设：指示babel做怎样的兼容性处理</span>
+          <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'@babel/preset-env'</span><span class="token punctuation">,</span> <span class="token comment">// 基本预设</span>
+            <span class="token punctuation">{</span>
+              <span class="token literal-property property">useBuiltIns</span><span class="token operator">:</span> <span class="token string">'usage'</span><span class="token punctuation">,</span> <span class="token comment">//按需加载</span>
+              <span class="token literal-property property">corejs</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">version</span><span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 指定core-js版本</span>
+              <span class="token literal-property property">targets</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token comment">// 指定兼容到什么版本的浏览器</span>
+                <span class="token literal-property property">chrome</span><span class="token operator">:</span> <span class="token string">'60'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">firefox</span><span class="token operator">:</span> <span class="token string">'50'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">ie</span><span class="token operator">:</span> <span class="token string">'9'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">safari</span><span class="token operator">:</span> <span class="token string">'10'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">edge</span><span class="token operator">:</span> <span class="token string">'17'</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// 图片处理</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(jpg|png|gif)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'url-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">limit</span><span class="token operator">:</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'[hash:10].[ext]'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">outputPath</span><span class="token operator">:</span> <span class="token string">'imgs'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">esModule</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 关闭url-loader默认使用的es6模块化解析</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">// html中的图片处理</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.html$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'html-loader'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">// 处理其他文件</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(js|css|less|html|jpg|png|gif)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'file-loader'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">outputPath</span><span class="token operator">:</span> <span class="token string">'media'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">MiniCssExtractPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token comment">// 对输出的css文件进行重命名</span>
+      <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'css/built.css'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// 压缩css</span>
+    <span class="token keyword">new</span> <span class="token class-name">OptimiziCssAssetsWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// HtmlWebpackPlugin：html文件的打包和压缩处理</span>
+    <span class="token comment">// 通过这个插件会自动将单独打包的样式文件通过link标签引入</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'./src/index.html'</span><span class="token punctuation">,</span>
+      <span class="token comment">// 压缩html代码</span>
+      <span class="token literal-property property">minify</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 移除空格</span>
+        <span class="token literal-property property">collapseWhitespace</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token comment">// 移除注释</span>
+        <span class="token literal-property property">removeComments</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// 生产环境下会自动压缩js代码</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'production'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</span></span></span></code></pre><h1 id="https://www.notion.so/756c9335d1f943c1a90b42a4524b6927" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/756c9335d1f943c1a90b42a4524b6927"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">五、Webpack 优化配置</span></span></h1><h2 id="https://www.notion.so/ec9affacbb5b4306b106049e6c9b1331" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/ec9affacbb5b4306b106049e6c9b1331"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.1 开发环境性能优化</span></span></h2><h3 id="https://www.notion.so/0255531b54e64bc68be6a45c784bad8a" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/0255531b54e64bc68be6a45c784bad8a"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.1.1 HMR（模块热替换）</span></span></h3><div id="https://www.notion.so/7b46ac0a0ea8487c833230fd77acaadd" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">HMR: hot module replacement 热模块替换 / 模块热替换</span></span></p></div><div id="https://www.notion.so/a18b8d2f8b7346aca93a15f4566e4dd6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">作用：一个模块发生变化，只会重新打包构建这一个模块（而不是打包所有模块） ，极大提升构建速度</span></span></p></div><div id="https://www.notion.so/c2eb8b7628be437b99650c1649b4102f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">代码：只需要在 devServer 中设置 hot 为 true，就会自动开启HMR功能（只能在开发模式下使用）</span></span></p></div><pre id="https://www.notion.so/85dfb6e41d5c4c7e993f165a692d3977" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token literal-property property">devServer</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">contentBase</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">compress</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">open</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// 开启HMR功能</span>
+  <span class="token comment">// 当修改了webpack配置，新配置要想生效，必须重启webpack服务</span>
+  <span class="token literal-property property">hot</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</span></span></span></code></pre><div id="https://www.notion.so/586be53b3a2541cea0662810db5e233b" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">每种文件实现热模块替换的情况：</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/caa414391b044f3d8b4b8153320241e0" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">样式文件：可以使用HMR功能，因为开发环境下使用的 style-loader 内部默认实现了热模块替换功能</span></span></li><li id="https://www.notion.so/55af2d0cdfb04601a016beb5ced70bf2" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">js 文件：默认不能使用HMR功能（修改一个 js 模块所有 js 模块都会刷新）   </span></span><ul class="BulletedListWrapper"><li id="https://www.notion.so/3234964c8c1c420a95be5ab02fc2e2f5" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">-&gt; 实现 HMR 需要修改 js 代码（添加支持 HMR 功能的代码）</span></span></li></ul><pre id="https://www.notion.so/217481f8b2634aa1ba6e3426c4241c16" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>// 绑定
+if (module.hot) {
+  // 一旦 module.hot 为true，说明开启了HMR功能。 --&gt; 让HMR功能代码生效
+  module.hot.accept(&#x27;./print.js&#x27;, function() {
+    // 方法会监听 print.js 文件的变化，一旦发生变化，只有这个模块会重新打包构建，其他模块不会。
+    // 会执行后面的回调函数
+    print();
+  });
+}
+</span></span></span></code></pre><div id="https://www.notion.so/0877f5c5f7f54a9b843b874588942f2e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">注意：HMR 功能对 js 的处理，只能处理非入口 js 文件的其他文件。</span></span></p></div></li><li id="https://www.notion.so/bb3d3e8ffc5b4391b974ca0a6191c4e1" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">html 文件: 默认不能使用 HMR 功能（html 不用做 HMR 功能，因为只有一个 html 文件，不需要再优化）   </span></span><div id="https://www.notion.so/549d04d6eba34e038933ea5f776edc6b" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">使用 HMR 会导致问题：html 文件不能热更新了（不会自动打包构建）</span></span></p></div><div id="https://www.notion.so/907024fa727a44e9837ce6f6e3fc2ebc" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">解决：修改 entry 入口，将 html 文件引入（这样 html 修改整体刷新）</span></span></p></div><pre id="https://www.notion.so/03d3d6eaf44245d284509e0f2e968ac1" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>entry: [&#x27;./src/js/index.js&#x27;, &#x27;./src/index.html&#x27;]
+</span></span></span></code></pre></li></ul><h3 id="https://www.notion.so/3cda2848eb974352a57e466f6d56769e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/3cda2848eb974352a57e466f6d56769e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.1.2 source-map</span></span></h3><div id="https://www.notion.so/fb6f3dc2968a4243a02e4e19c45ba6db" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">source-map：一种提供</span><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">源代码到构建后代码的映射</strong></span><span class="SemanticString">的技术 （如果构建后代码出错了，通过映射可以追踪源代码错误）</span></span></p></div><div id="https://www.notion.so/d3ecdcc6ecf44c16ac7d9a80cf6aca19" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">参数：</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">[inline-|hidden-|eval-][nosources-][cheap-[module-]]source-map</code></span></span></p></div><div id="https://www.notion.so/e7366a0408e540038585f84baa923baa" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">代码：</span></span></p></div><pre id="https://www.notion.so/2a436b62c2ff46ffa4389035395cffd9" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>devtool: &#x27;eval-source-map&#x27;
+</span></span></span></code></pre><div id="https://www.notion.so/98078fe4164b49dd9f110ee9f2583715" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">可选方案：[生成source-map的位置|给出的错误代码信息]</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/d858146263784d679f44d02d51a406f2" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">source-map：外部，错误代码准确信息 和 源代码的错误位置</span></span></li><li id="https://www.notion.so/17094d656f424814851a5322182dd74c" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">inline-source-map：内联，只生成一个内联 source-map，错误代码准确信息 和 源代码的错误位置</span></span></li><li id="https://www.notion.so/89c37301e87544adaa59bf954b4fb069" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">hidden-source-map：外部，错误代码错误原因，但是没有错误位置（为了隐藏源代码），不能追踪源代码错误，只能提示到构建后代码的错误位置</span></span></li><li id="https://www.notion.so/d4e99e69c87f46dbade6e57be764cb57" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">eval-source-map：内联，每一个文件都生成对应的 source-map，都在 eval 中，错误代码准确信息 和 源代码的错误位</span></span></li><li id="https://www.notion.so/ec8577a31587437c8ef5c61a2e5afcfa" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">nosources-source-map：外部，错误代码准确信息，但是没有任何源代码信息（为了隐藏源代码）</span></span></li><li id="https://www.notion.so/6d8201b65a0b4d39808e4e10766896b9" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">cheap-source-map：外部，错误代码准确信息 和 源代码的错误位置，只能把错误精确到整行，忽略列</span></span></li><li id="https://www.notion.so/9a0e74826b1a435d9c3aca833bdd39bb" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">cheap-module-source-map：外部，错误代码准确信息 和 源代码的错误位置，module 会加入 loader 的 source-map</span></span></li></ul><div id="https://www.notion.so/f06ebe3c8fef4ee084e6dcdccd7255d4" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">内联 和 外部的区别：1. 外部生成了文件，内联没有 2. 内联构建速度更快</span></span></p></div><div id="https://www.notion.so/32f6badd760c41ed9c563046f127f43f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">开发/生产环境可做的选择：</span></span></p></div><div id="https://www.notion.so/9c120c150f254e029dcce9e1f233c613" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">开发环境</strong></span><span class="SemanticString">：需要考虑速度快，调试更友好</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/ee2322fbfd9a41038dbc8aed10ee7f83" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">速度快( eval &gt; inline &gt; cheap &gt;... ) </span></span><ol class="NumberedListWrapper"><li id="https://www.notion.so/f6e06535696a418690e8241afa6e81cc" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">eval-cheap-souce-map</span></span></li><li id="https://www.notion.so/b1bcb20d7565454d9244deb9c919ebfe" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">eval-source-map</span></span></li></ol></li><li id="https://www.notion.so/e839cb8e4c3f428fbb7ee21eafee4bd9" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">调试更友好  </span></span><ol class="NumberedListWrapper"><li id="https://www.notion.so/2d6bfae091154281bf90c634aefaaa47" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">souce-map</span></span></li><li id="https://www.notion.so/f0b8c3d1ae574816bb19954808720660" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">cheap-module-souce-map</span></span></li><li id="https://www.notion.so/22dc3caae52b4560aab4f1eb5e0c1c21" class="NumberedList" value="3"><span class="SemanticStringArray"><span class="SemanticString">cheap-souce-map</span></span></li></ol></li></ul><div id="https://www.notion.so/bb956e6f0c95437090f2f6936f7d37f6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">最终得出最好的两种方案 --&gt; eval-source-map（完整度高，内联速度快） / eval-cheap-module-souce-map（错误提示忽略列但是包含其他信息，内联速度快）</strong></span></span></p></div><div id="https://www.notion.so/fa248f2fbd1349d38ced3cc3991cd6fd" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">生产环境</strong></span><span class="SemanticString">：需要考虑源代码要不要隐藏，调试要不要更友好</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/b1da017e9f014951bff7edf645835cef" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">内联会让代码体积变大，所以在生产环境不用内联</span></span></li><li id="https://www.notion.so/4e6c5bee29394bb7a9e4b7888f108c08" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">隐藏源代码 </span></span><ol class="NumberedListWrapper"><li id="https://www.notion.so/2945c00b7da1402ab34c1b22ba56bec7" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">nosources-source-map 全部隐藏</span></span></li><li id="https://www.notion.so/6f361db45561438c89e744290897375e" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">hidden-source-map 只隐藏源代码，会提示构建后代码错误信息</span></span></li></ol></li></ul><div id="https://www.notion.so/298db1c86c37432a9e73469ae8472e72" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">最终得出最好的两种方案 --&gt; source-map（最完整） / cheap-module-souce-map（错误提示一整行忽略列）</strong></span></span></p></div><h2 id="https://www.notion.so/b2b422b6783b43be9597018f6a9da1e1" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/b2b422b6783b43be9597018f6a9da1e1"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2 生产环境性能优化</span></span></h2><h3 id="https://www.notion.so/fdf6764766304e01bb7cc50c1e5b3812" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/fdf6764766304e01bb7cc50c1e5b3812"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.1 优化打包构建速度</span></span></h3><h3 id="https://www.notion.so/aaabcd222c9a4e11a71a1ac4b644fe15" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/aaabcd222c9a4e11a71a1ac4b644fe15"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.1.1 oneOf</span></span></h3><div id="https://www.notion.so/6ee0d267287f41edbbf11680e90dffee" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">oneOf：匹配到 loader 后就不再向后进行匹配，优化生产环境的打包构建速度</span></span></p></div><div id="https://www.notion.so/ae1b5f7159a44938b8e745a4a92808db" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">代码：</span></span></p></div><pre id="https://www.notion.so/9053d791311544529214d15d0cd46292" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>module: {
+  rules: [
+    {
+      // js 语法检查
+      test: /\.js$/,
+      exclude: /node_modules/,
+      // 优先执行
+      enforce: &#x27;pre&#x27;,
+      loader: &#x27;eslint-loader&#x27;,
+      options: {
+        fix: true
+      }
+    },
+    {
+      // oneOf 优化生产环境的打包构建速度
+      // 以下loader只会匹配一个（匹配到了后就不会再往下匹配了）
+      // 注意：不能有两个配置处理同一种类型文件（所以把eslint-loader提取出去放外面）
+      oneOf: [
+        {
+          test: /\.css$/,
+          use: [...commonCssLoader]
+        },
+        {
+          test: /\.less$/,
+          use: [...commonCssLoader, &#x27;less-loader&#x27;]
+        },
+        {
+          // js 兼容性处理
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: &#x27;babel-loader&#x27;,
+          options: {
+            presets: [
+              [
+                &#x27;@babel/preset-env&#x27;,
+                {
+                  useBuiltIns: &#x27;usage&#x27;,
+                  corejs: {version: 3},
+                  targets: {
+                    chrome: &#x27;60&#x27;,
+                    firefox: &#x27;50&#x27;
+                  }
+                }
+              ]
+            ]
+          }
+        },
+        {
+          test: /\.(jpg|png|gif)/,
+          loader: &#x27;url-loader&#x27;,
+          options: {
+            limit: 8 * 1024,
+            name: &#x27;[hash:10].[ext]&#x27;,
+            outputPath: &#x27;imgs&#x27;,
+            esModule: false
+          }
+        },
+        {
+          test: /\.html$/,
+          loader: &#x27;html-loader&#x27;
+        },
+        {
+          exclude: /\.(js|css|less|html|jpg|png|gif)/,
+          loader: &#x27;file-loader&#x27;,
+          options: {
+            outputPath: &#x27;media&#x27;
+          }
+        }
+      ]
+    }
+  ]
+},
+</span></span></span></code></pre><h3 id="https://www.notion.so/cfa79de450e44ac9b2959e5007387ed3" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/cfa79de450e44ac9b2959e5007387ed3"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.1.2 babel 缓存</span></span></h3><div id="https://www.notion.so/33c424b87f2b41afadceae5ecb8c7591" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">babel 缓存</strong></span><span class="SemanticString">：类似 HMR，将 babel 处理后的资源缓存起来（哪里的 js 改变就更新哪里，其他 js 还是用之前缓存的资源），让第二次打包构建速度更快</span></span></p></div><div id="https://www.notion.so/96a83684a86040e3a435956a9018642c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">代码：</span></span></p></div><pre id="https://www.notion.so/c544b6adf64e4a84b2333d308ff61423" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>{
+  test: /\.js$/,
+  exclude: /node_modules/,
+  loader: &#x27;babel-loader&#x27;,
+  options: {
+    presets: [
+      [
+        &#x27;@babel/preset-env&#x27;,
+        {
+          useBuiltIns: &#x27;usage&#x27;,
+          corejs: { version: 3 },
+          targets: {
+            chrome: &#x27;60&#x27;,
+            firefox: &#x27;50&#x27;
+          }
+        }
+      ]
+    ],
+    // 开启babel缓存
+    // 第二次构建时，会读取之前的缓存
+    cacheDirectory: true
+  }
+},
+</span></span></span></code></pre><div id="https://www.notion.so/07799085451f48c4b6128b04e010ad9d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">文件资源缓存</strong></span></span></p></div><div id="https://www.notion.so/806917041d8f47e099b2e652bda9da60" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">文件名不变，就不会重新请求，而是再次用之前缓存的资源</span></span></p></div><div id="https://www.notion.so/bc8228d0a1184e0cb5b6d42837780efc" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">1.hash: 每次 wepack 打包时会生成一个唯一的 hash 值。</span></span></p></div><div id="https://www.notion.so/8d1cc2fec91f47c8b238a0d845926dbd" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">​ 问题：重新打包，所有文件的 hsah 值都改变，会导致所有缓存失效。（可能只改动了一个文件）</span></span></p></div><div id="https://www.notion.so/ce8ed194737c4c198e70ce78037a7e00" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">2.chunkhash：根据 chunk 生成的 hash 值。来源于同一个 chunk的 hash 值一样</span></span></p></div><div id="https://www.notion.so/ad3765bbe2ad451aafcf3d6dd4c2d29a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">​ 问题：js 和 css 来自同一个chunk，hash 值是一样的（因为 css-loader 会将 css 文件加载到 js 中，所以同属于一个chunk）</span></span></p></div><div id="https://www.notion.so/8c7d0fcb23d84acb9cd06b91eb862415" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">3.contenthash: 根据文件的内容生成 hash 值。不同文件 hash 值一定不一样(文件内容修改，文件名里的 hash 才会改变)</span></span></p></div><div id="https://www.notion.so/838b2216bd0f4358ae469925e5f0c454" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">修改 css 文件内容，打包后的 css 文件名 hash 值就改变，而 js 文件没有改变 hash 值就不变，这样 css 和 js 缓存就会分开判断要不要重新请求资源 --&gt; 让代码上线运行缓存更好使用</span></span></p></div><h3 id="https://www.notion.so/60794bfd2e8e4e6996cda4aa6dcceb37" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/60794bfd2e8e4e6996cda4aa6dcceb37"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.1.3 多进程打包</span></span></h3><div id="https://www.notion.so/eaebbcf4960b48b7921fb26d76b72ccf" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">多进程打包：某个任务消耗时间较长会卡顿，多进程可以同一时间干多件事，效率更高。</span></span></p></div><div id="https://www.notion.so/cdd34d85083a41698706d4039573ace6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">优点是提升打包速度，缺点是每个进程的开启和交流都会有开销（babel-loader消耗时间最久，所以使用thread-loader针对其进行优化）</span></span></p></div><pre id="https://www.notion.so/55f827a7bfa8444cb67a5498a4900fb6" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>{
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: [
+    /*
+      thread-loader会对其后面的loader（这里是babel-loader）开启多进程打包。
+      进程启动大概为600ms，进程通信也有开销。(启动的开销比较昂贵，不要滥用)
+      只有工作消耗时间比较长，才需要多进程打包
+    */
+    {
+      loader: &#x27;thread-loader&#x27;,
+      options: {
+        workers: 2 // 进程2个
+      }
+    },
+    {
+      loader: &#x27;babel-loader&#x27;,
+      options: {
+        presets: [
+          [
+            &#x27;@babel/preset-env&#x27;,
+            {
+              useBuiltIns: &#x27;usage&#x27;,
+              corejs: { version: 3 },
+              targets: {
+                chrome: &#x27;60&#x27;,
+                firefox: &#x27;50&#x27;
+              }
+            }
+          ]
+        ],
+        // 开启babel缓存
+        // 第二次构建时，会读取之前的缓存
+        cacheDirectory: true
+      }
+    }
+  ]
+},
+</span></span></span></code></pre><h3 id="https://www.notion.so/095ec71308944c539ef0f2ab02e2ac0a" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/095ec71308944c539ef0f2ab02e2ac0a"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.1.4 externals</span></span></h3><div id="https://www.notion.so/9b3194009c304d6e82a166ffc2430e99" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">externals：让某些库不打包，通过 cdn 引入</span></span></p></div><div id="https://www.notion.so/5af6ff5f072e4871ab4f79109d17dd6c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack.config.js 中配置：</span></span></p></div><pre id="https://www.notion.so/542f7a366dd648ceaf9b982a0225daad" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>externals: {
+  // 拒绝jQuery被打包进来(通过cdn引入，速度会快一些)
+  // 忽略的库名 -- npm包名
+  jquery: &#x27;jQuery&#x27;
+}
+</span></span></span></code></pre><div id="https://www.notion.so/46841f7dba454ef9b632df5a22542ebd" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">需要在 index.html 中通过 cdn 引入：</span></span></p></div><pre id="https://www.notion.so/356e678ada284b6785ff12c87212093e" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>&lt;script src=&quot;https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js&quot;&gt;&lt;/script&gt;
+</span></span></span></code></pre><h3 id="https://www.notion.so/30147aca9274464994fb743fad204eeb" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/30147aca9274464994fb743fad204eeb"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.1.5 dll</span></span></h3><div id="https://www.notion.so/61cd390fd30c4289ae8857ea18eaa227" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">dll：让某些库单独打包，后直接引入到 build 中。可以在 code split 分割出 node_modules 后再用 dll 更细的分割，优化代码运行的性能。</span></span></p></div><div id="https://www.notion.so/5ab9e527b0c740e0a59710a14070e60e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack.dll.js 配置：(将 jquery 单独打包)</span></span></p></div><pre id="https://www.notion.so/aa18b9a0e2e4421fa8a8ac3aef1fd11c" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>/*
+  node_modules的库会打包到一起，但是很多库的时候打包输出的js文件就太大了
+  使用dll技术，对某些库（第三方库：jquery、react、vue...）进行单独打包
+  当运行webpack时，默认查找webpack.config.js配置文件
+  需求：需要运行webpack.dll.js文件
+    --&gt; webpack --config webpack.dll.js（运行这个指令表示以这个配置文件打包）
+*/
+const { resolve } = require(&#x27;path&#x27;);
+const webpack = require(&#x27;webpack&#x27;);
+
+module.exports = {
+  entry: {
+    // 最终打包生成的[name] --&gt; jquery
+    // [&#x27;jquery] --&gt; 要打包的库是jquery
+    jquery: [&#x27;jquery&#x27;]
+  },
+  output: {
+    // 输出出口指定
+    filename: &#x27;[name].js&#x27;, // name就是jquery
+    path: resolve(__dirname, &#x27;dll&#x27;), // 打包到dll目录下
+    library: &#x27;[name]_[hash]&#x27;, // 打包的库里面向外暴露出去的内容叫什么名字
+  },
+  plugins: [
+    // 打包生成一个manifest.json --&gt; 提供jquery的映射关系（告诉webpack：jquery之后不需要再打包和暴露内容的名称）
+    new webpack.DllPlugin({
+      name: &#x27;[name]_[hash]&#x27;, // 映射库的暴露的内容名称
+      path: resolve(__dirname, &#x27;dll/manifest.json&#x27;) // 输出文件路径
+    })
+  ],
+  mode: &#x27;production&#x27;
+};
+</span></span></span></code></pre><div id="https://www.notion.so/a775a421a97d447baf9cd1fa14ffe09f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack.config.js 配置：(告诉 webpack 不需要再打包 jquery，并将之前打包好的 jquery 跟其他打包好的资源一同输出到 build 目录下)</span></span></p></div><pre id="https://www.notion.so/2960ff72275f464083c5383255b002f9" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>// 引入插件
+const webpack = require(&#x27;webpack&#x27;);
+const AddAssetHtmlWebpackPlugin = require(&#x27;add-asset-html-webpack-plugin&#x27;);
+
+// plugins中配置：
+plugins: [
+  new HtmlWebpackPlugin({
+    template: &#x27;./src/index.html&#x27;
+  }),
+  // 告诉webpack哪些库不参与打包，同时使用时的名称也得变
+  new webpack.DllReferencePlugin({
+    manifest: resolve(__dirname, &#x27;dll/manifest.json&#x27;)
+  }),
+  // 将某个文件打包输出到build目录下，并在html中自动引入该资源
+  new AddAssetHtmlWebpackPlugin({
+    filepath: resolve(__dirname, &#x27;dll/jquery.js&#x27;)
+  })
+],
+</span></span></span></code></pre><h3 id="https://www.notion.so/01ea142d53df4c6aadb54a8aab91ae9e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/01ea142d53df4c6aadb54a8aab91ae9e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.2 优化代码运行的性能</span></span></h3><h3 id="https://www.notion.so/346fec717a0b4f62ac306dff141f9936" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/346fec717a0b4f62ac306dff141f9936"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.2.1 缓存</span></span></h3><h3 id="https://www.notion.so/77ff7d7a8db34758b4c02803fd71af23" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/77ff7d7a8db34758b4c02803fd71af23"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.2.2 tree shaking（树摇）</span></span></h3><div id="https://www.notion.so/3545d62e6953424cba2314b774587ff0" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">tree shaking：去除无用代码</span></span></p></div><div id="https://www.notion.so/015819fe054f410eb1c8d544e53abbd8" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">前提：1. 必须使用 ES6 模块化 2. 开启 production 环境 （这样就自动会把无用代码去掉）</span></span></p></div><div id="https://www.notion.so/9416d049e2b64dd4a78b42759d38b519" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">作用：减少代码体积</span></span></p></div><div id="https://www.notion.so/ea1681aaf97e41dabfd024b6987c2258" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">在 package.json 中配置：</span></span></p></div><div id="https://www.notion.so/ceb0af90265d4e3e8a69220e874e926a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">&quot;sideEffects&quot;: false</code></span><span class="SemanticString"> 表示所有代码都没有副作用（都可以进行 tree shaking）</span></span></p></div><div id="https://www.notion.so/b7c08eed72454f758250008a8ebe9b8c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">这样会导致的问题：可能会把 css / @babel/polyfill 文件干掉（副作用）</span></span></p></div><div id="https://www.notion.so/9ef036d615a54b1c9146c7f2da7f0b07" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">所以可以配置：</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">&quot;sideEffects&quot;: [&quot;*.css&quot;, &quot;*.less&quot;]</code></span><span class="SemanticString"> 不会对css/less文件tree shaking处理</span></span></p></div><h3 id="https://www.notion.so/dc8976c2b5dc40f7b2b003282002b93a" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/dc8976c2b5dc40f7b2b003282002b93a"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.2.3 code split（代码分割）</span></span></h3><div id="https://www.notion.so/7e66fe68a9cd45edba49ee628808e53e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">代码分割。将打包输出的一个大的 bundle.js 文件拆分成多个小文件，这样可以并行加载多个文件，比加载一个文件更快。</span></span></p></div><div id="https://www.notion.so/28b387b4f55b40c3951803ce14a6c237" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">1.多入口拆分</span></span></p></div><pre id="https://www.notion.so/915397b462bb4bceb3b49d8455513dc7" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>entry: {
+    // 多入口：有一个入口，最终输出就有一个bundle
+    index: &#x27;./src/js/index.js&#x27;,
+    test: &#x27;./src/js/test.js&#x27;
+  },
+  output: {
+    // [name]：取文件名
+    filename: &#x27;js/[name].[contenthash:10].js&#x27;,
+    path: resolve(__dirname, &#x27;build&#x27;)
+  },
+</span></span></span></code></pre><div id="https://www.notion.so/dd3088df8c504f1caef29b968a6da559" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">2.optimization：</span></span></p></div><pre id="https://www.notion.so/4dfbedb9b7854e35bfa01d18d650202c" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>optimization: {
+    splitChunks: {
+      chunks: &#x27;all&#x27;
+    }
+  },
+</span></span></span></code></pre><ul class="BulletedListWrapper"><li id="https://www.notion.so/cf96ad97a6a14fbdbbefd38d8bd655d1" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">将 node_modules 中的代码单独打包（大小超过30kb）</span></span></li><li id="https://www.notion.so/5b004b46289546e8a82ff853ce6f2607" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">自动分析多入口chunk中，有没有公共的文件。如果有会打包成单独一个chunk(比如两个模块中都引入了jquery会被打包成单独的文件)（大小超过30kb）</span></span></li></ul><div id="https://www.notion.so/2d2c8b5086cb41f0a46abcc39598e46c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">3.import 动态导入语法：</span></span></p></div><pre id="https://www.notion.so/fa8914f9fa58423fb0ea92203ca10331" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>/*
+  通过js代码，让某个文件被单独打包成一个chunk
+  import动态导入语法：能将某个文件单独打包(test文件不会和index打包在同一个文件而是单独打包)
+  webpackChunkName:指定test单独打包后文件的名字
+*/
+import(/* webpackChunkName: &#x27;test&#x27; */&#x27;./test&#x27;)
+  .then(({ mul, count }) =&gt; {
+    // 文件加载成功~
+    // eslint-disable-next-line
+    console.log(mul(2, 5));
+  })
+  .catch(() =&gt; {
+    // eslint-disable-next-line
+    console.log(&#x27;文件加载失败~&#x27;);
+  });
+</span></span></span></code></pre><h3 id="https://www.notion.so/f1cafa316d394e5da33264f07431d379" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/f1cafa316d394e5da33264f07431d379"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.2.4 lazy loading（懒加载/预加载）</span></span></h3><div id="https://www.notion.so/0c8a7a227bf54e0e9420f919c689b4d8" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">1.懒加载：当文件需要使用时才加载（需要代码分割）。但是如果资源较大，加载时间就会较长，有延迟。</span></span></p></div><div id="https://www.notion.so/cba9ad21c6414dfab669327c4b0863c3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">2.正常加载：可以认为是并行加载（同一时间加载多个文件）没有先后顺序，先加载了不需要的资源就会浪费时间。</span></span></p></div><div id="https://www.notion.so/03fadb0535974b8090bec39f32eb7ed8" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">3.预加载 prefetch（兼容性很差）：会在使用之前，提前加载。等其他资源加载完毕，浏览器空闲了，再偷偷加载这个资源。这样在使用时已经加载好了，速度很快。所以在懒加载的基础上加上预加载会更好。</span></span></p></div><div id="https://www.notion.so/adcc7104778e4ba38bf984f48a23bd04" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">代码：</span></span></p></div><pre id="https://www.notion.so/a0b9b7e2b36a49409d13591c611e5178" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>document.getElementById(&#x27;btn&#x27;).onclick = function() {
+  // 将import的内容放在异步回调函数中使用，点击按钮，test.js才会被加载(不会重复加载)
+  // webpackPrefetch: true表示开启预加载
+  import(/* webpackChunkName: &#x27;test&#x27;, webpackPrefetch: true */&#x27;./test&#x27;).then(({ mul }) =&gt; {
+    console.log(mul(4, 5));
+  });
+  import(&#x27;./test&#x27;).then(({ mul }) =&gt; {
+    console.log(mul(2, 5))
+  })
+};
+</span></span></span></code></pre><h3 id="https://www.notion.so/efb293a12e184a969431d732f0c023da" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/efb293a12e184a969431d732f0c023da"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">5.2.2.5 pwa（离线可访问技术）</span></span></h3><div id="https://www.notion.so/72276214e7d0429d821dc3808a0b5be0" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">pwa：离线可访问技术（渐进式网络开发应用程序），使用 serviceworker 和 workbox 技术。优点是离线也能访问，缺点是兼容性差。</span></span></p></div><div id="https://www.notion.so/7dcd517d78b94c118877379098f0f45c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack.config.js 中配置：</span></span></p></div><pre id="https://www.notion.so/eddb909fbdc44c9b9eff51bc3ecf13ae" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const WorkboxWebpackPlugin = require(&#x27;workbox-webpack-plugin&#x27;); // 引入插件
+
+// plugins中加入：
+new WorkboxWebpackPlugin.GenerateSW({
+  /*
+    1. 帮助serviceworker快速启动
+    2. 删除旧的 serviceworker
+
+    生成一个 serviceworker 配置文件
+  */
+  clientsClaim: true,
+  skipWaiting: true
+})
+</span></span></span></code></pre><div id="https://www.notion.so/18466e8fbe894195a0cd8a0b5f6cc740" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">index.js 中还需要写一段代码来激活它的使用：</span></span></p></div><pre id="https://www.notion.so/ed06c2f13d3c41cabf92f9ff2d8ac2dd" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>/*
+  1. eslint不认识 window、navigator全局变量
+    解决：需要修改package.json中eslintConfig配置
+    &quot;env&quot;: {
+      &quot;browser&quot;: true // 支持浏览器端全局变量
+    }
+  2. sw代码必须运行在服务器上
+    --&gt; nodejs
+    或--&gt;
+      npm i serve -g
+      serve -s build 启动服务器，将打包输出的build目录下所有资源作为静态资源暴露出去
+*/
+if (&#x27;serviceWorker&#x27; in navigator) { // 处理兼容性问题
+  window.addEventListener(&#x27;load&#x27;, () =&gt; {
+    navigator.serviceWorker
+      .register(&#x27;/service-worker.js&#x27;) // 注册serviceWorker
+      .then(() =&gt; {
+        console.log(&#x27;sw注册成功了~&#x27;);
+      })
+      .catch(() =&gt; {
+        console.log(&#x27;sw注册失败了~&#x27;);
+      });
+  });
+}
+</span></span></span></code></pre><h1 id="https://www.notion.so/2b104433d8714432ae9715bd93fbc565" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/2b104433d8714432ae9715bd93fbc565"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">六、Webpack 配置详情</span></span></h1><h2 id="https://www.notion.so/e16b10b57b6e43789d67590335f2183b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/e16b10b57b6e43789d67590335f2183b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">6.1 entry</span></span></h2><div id="https://www.notion.so/e857db92feec44acb46cbeab5e2a5d0a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">entry: 入口起点</span></span></p></div><ol class="NumberedListWrapper"><li id="https://www.notion.so/8495a2179e214f7bb587e6a10d430a17" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">string --&gt; &#x27;./src/index.js&#x27;，单入口 </span></span><div id="https://www.notion.so/960c7fc7ada549d488139da00ea3313a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">打包形成一个 chunk。 输出一个 bundle 文件。此时 chunk 的名称默认是 main</span></span></p></div></li><li id="https://www.notion.so/6ca968ecca6449f9b25b83dd5a79eddd" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">array --&gt; [&#x27;./src/index.js&#x27;, &#x27;./src/add.js&#x27;]，多入口  </span></span><div id="https://www.notion.so/5dd20b0b566b426bbf9d3d802a06f89f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">所有入口文件最终只会形成一个 chunk，输出出去只有一个 bundle 文件。</span></span></p></div><div id="https://www.notion.so/93ef1b6c16474fcdadaea86ad7138153" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">（一般只用在 HMR 功能中让 html 热更新生效）</span></span></p></div></li><li id="https://www.notion.so/84a545b78769493fa5c2d7b5e8adf697" class="NumberedList" value="3"><span class="SemanticStringArray"><span class="SemanticString">object，多入口 </span></span><div id="https://www.notion.so/5e42137f485048c1b464f3c9e88364da" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">有几个入口文件就形成几个 chunk，输出几个 bundle 文件，此时 chunk 的名称是 key 值</span></span></p></div></li></ol><ul class="BulletedListWrapper"><li id="https://www.notion.so/06573ee9f7f542b599f47a54cca54fa4" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">-&gt; 特殊用法：</span></span></li></ul><pre id="https://www.notion.so/f5e36257825f41c69007f24487026f24" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>entry: {
+  // 最终只会形成一个chunk, 输出出去只有一个bundle文件。
+  index: [&#x27;./src/index.js&#x27;, &#x27;./src/count.js&#x27;],
+  // 形成一个chunk，输出一个bundle文件。
+  add: &#x27;./src/add.js&#x27;
+}
+</span></span></span></code></pre><h2 id="https://www.notion.so/95d0cccdb6d34c5488a1d841281b484e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/95d0cccdb6d34c5488a1d841281b484e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">6.2 output</span></span></h2><pre id="https://www.notion.so/6668c44964ac4ee6be06acbbba7ff45e" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>output: {
+  // 文件名称（指定名称+目录）
+  filename: &#x27;js/[name].js&#x27;,
+  // 输出文件目录（将来所有资源输出的公共目录）
+  path: resolve(__dirname, &#x27;build&#x27;),
+  // 所有资源引入公共路径前缀 --&gt; &#x27;imgs/a.jpg&#x27; --&gt; &#x27;/imgs/a.jpg&#x27;
+  publicPath: &#x27;/&#x27;,
+  chunkFilename: &#x27;js/[name]_chunk.js&#x27;, // 指定非入口chunk的名称
+  library: &#x27;[name]&#x27;, // 打包整个库后向外暴露的变量名
+  libraryTarget: &#x27;window&#x27; // 变量名添加到哪个上 browser：window
+  // libraryTarget: &#x27;global&#x27; // node：global
+  // libraryTarget: &#x27;commonjs&#x27; // conmmonjs模块 exports
+},
+</span></span></span></code></pre><h2 id="https://www.notion.so/8aacbc03f00c4624b9f95a0f70741b4a" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/8aacbc03f00c4624b9f95a0f70741b4a"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">6.3 module</span></span></h2><pre id="https://www.notion.so/758f444b5da44cc3af726a7a82dadaf4" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>module: {
+  rules: [
+    // loader的配置
+    {
+      test: /\.css$/,
+      // 多个loader用use
+      use: [&#x27;style-loader&#x27;, &#x27;css-loader&#x27;]
+    },
+    {
+      test: /\.js$/,
+      // 排除node_modules下的js文件
+      exclude: /node_modules/,
+      // 只检查src下的js文件
+      include: resolve(__dirname, &#x27;src&#x27;),
+      enforce: &#x27;pre&#x27;, // 优先执行
+      // enforce: &#x27;post&#x27;, // 延后执行
+      // 单个loader用loader
+      loader: &#x27;eslint-loader&#x27;,
+      options: {} // 指定配置选项
+    },
+    {
+      // 以下配置只会生效一个
+      oneOf: []
+    }
+  ]
+},
+</span></span></span></code></pre><h2 id="https://www.notion.so/d5811fcd800644dcac06c66ded25879f" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/d5811fcd800644dcac06c66ded25879f"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">6.4 resolve</span></span></h2><pre id="https://www.notion.so/659c945e19eb46e7bacab7776b76a236" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>// 解析模块的规则
+resolve: {
+  // 配置解析模块路径别名: 优点：当目录层级很复杂时，简写路径；缺点：路径不会提示
+  alias: {
+    $css: resolve(__dirname, &#x27;src/css&#x27;)
+  },
+  // 配置省略文件路径的后缀名（引入时就可以不写文件后缀名了）
+  extensions: [&#x27;.js&#x27;, &#x27;.json&#x27;, &#x27;.jsx&#x27;, &#x27;.css&#x27;],
+  // 告诉 webpack 解析模块应该去找哪个目录
+  modules: [resolve(__dirname, &#x27;../../node_modules&#x27;), &#x27;node_modules&#x27;]
+}
+</span></span></span></code></pre><div id="https://www.notion.so/e46e03813ae947f6b2fc419a18b1b0ed" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">这样配置后，引入文件就可以这样简写：</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">import &#x27;$css/index&#x27;;</code></span></span></p></div><h2 id="https://www.notion.so/6bd5e905454c4a319a2a116cba81647c" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/6bd5e905454c4a319a2a116cba81647c"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">6.5 dev server</span></span></h2><pre id="https://www.notion.so/c7811f38cf2f4a1281af2c3ece7befa8" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>devServer: {
+  // 运行代码所在的目录
+  contentBase: resolve(__dirname, &#x27;build&#x27;),
+  // 监视contentBase目录下的所有文件，一旦文件变化就会reload
+  watchContentBase: true,
+  watchOptions: {
+    // 忽略文件
+    ignored: /node_modules/
+  },
+  // 启动gzip压缩
+  compress: true,
+  // 端口号
+  port: 5000,
+  // 域名
+  host: &#x27;localhost&#x27;,
+  // 自动打开浏览器
+  open: true,
+  // 开启HMR功能
+  hot: true,
+  // 不要显示启动服务器日志信息
+  clientLogLevel: &#x27;none&#x27;,
+  // 除了一些基本信息外，其他内容都不要显示
+  quiet: true,
+  // 如果出错了，不要全屏提示
+  overlay: false,
+  // 服务器代理，--&gt; 解决开发环境跨域问题
+  proxy: {
+    // 一旦devServer(5000)服务器接收到/api/xxx的请求，就会把请求转发到另外一个服务器3000
+    &#x27;/api&#x27;: {
+      target: &#x27;http://localhost:3000&#x27;,
+      // 发送请求时，请求路径重写：将/api/xxx --&gt; /xxx （去掉/api）
+      pathRewrite: {
+        &#x27;^/api&#x27;: &#x27;&#x27;
+      }
+    }
+  }
+}
+</span></span></span></code></pre><div id="https://www.notion.so/41033838122445409251db77b84d9015" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">其中，跨域问题：同源策略中不同的协议、端口号、域名就会产生跨域。</span></span></p></div><div id="https://www.notion.so/828bc056299241b5bf191233ea10f319" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">正常的浏览器和服务器之间有跨域，但是服务器之间没有跨域。代码通过代理服务器运行，所以浏览器和代理服务器之间没有跨域，浏览器把请求发送到代理服务器上，代理服务器替你转发到另外一个服务器上，服务器之间没有跨域，所以请求成功。代理服务器再把接收到的响应响应给浏览器。这样就解决开发环境下的跨域问题。</span></span></p></div><h2 id="https://www.notion.so/4dab20c808c94216821834d8d617ca60" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/4dab20c808c94216821834d8d617ca60"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">6.6 optimization</span></span></h2><div id="https://www.notion.so/98f4369d4baa42a2835f35960afc9ae6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">contenthash 缓存会导致一个问题：修改 a 文件导致 b 文件 contenthash 变化。
+因为在 index.js 中引入 a.js，打包后 index.js 中记录了 a.js 的 hash 值，而 a.js 改变，其重新打包后的 hash 改变，导致 index.js 文件内容中记录的 a.js 的 hash 也改变，从而重新打包后 index.js 的 hash 值也会变，这样就会使缓存失效。（改变的是a.js文件但是 index.js 文件的 hash 值也改变了）
+解决办法：runtimeChunk --&gt; 将当前模块记录其他模块的 hash 单独打包为一个文件 runtime，这样 a.js 的 hash 改变只会影响 runtime 文件，不会影响到 index.js 文件</span></span></p></div><pre id="https://www.notion.so/f313ace129674561ad0dde495733209b" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>output: {
+  filename: &#x27;js/[name].[contenthash:10].js&#x27;,
+  path: resolve(__dirname, &#x27;build&#x27;),
+  chunkFilename: &#x27;js/[name].[contenthash:10]_chunk.js&#x27; // 指定非入口文件的其他chunk的名字加_chunk
+},
+optimization: {
+  splitChunks: {
+    chunks: &#x27;all&#x27;,
+    /* 以下都是splitChunks默认配置，可以不写
+    miniSize: 30 * 1024, // 分割的chunk最小为30kb（大于30kb的才分割）
+    maxSize: 0, // 最大没有限制
+    minChunks: 1, // 要提取的chunk最少被引用1次
+    maxAsyncRequests: 5, // 按需加载时并行加载的文件的最大数量为5
+    maxInitialRequests: 3, // 入口js文件最大并行请求数量
+    automaticNameDelimiter: &#x27;~&#x27;, // 名称连接符
+    name: true, // 可以使用命名规则
+    cacheGroups: { // 分割chunk的组
+      vendors: {
+        // node_modules中的文件会被打包到vendors组的chunk中，--&gt; vendors~xxx.js
+        // 满足上面的公共规则，大小超过30kb、至少被引用一次
+        test: /[\\/]node_modules[\\/]/,
+        // 优先级
+        priority: -10
+      },
+      default: {
+        // 要提取的chunk最少被引用2次
+        minChunks: 2,
+        prority: -20,
+        // 如果当前要打包的模块和之前已经被提取的模块是同一个，就会复用，而不是重新打包
+        reuseExistingChunk: true
+      }
+    } */
+  },
+  // 将index.js记录的a.js的hash值单独打包到runtime文件中
+  runtimeChunk: {
+    name: entrypoint =&gt; `runtime-${entrypoint.name}`
+  },
+  minimizer: [
+    // 配置生产环境的压缩方案：js/css
+    new TerserWebpackPlugin({
+      // 开启缓存
+      cache: true,
+      // 开启多进程打包
+      parallel: true,
+      // 启用sourceMap(否则会被压缩掉)
+      sourceMap: true
+    })
+  ]
+}
+</span></span></span></code></pre><h1 id="https://www.notion.so/40b3da4a04234ad980e1f86c46440aa0" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/40b3da4a04234ad980e1f86c46440aa0"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">七、Webpack5 介绍和使用</span></span></h1><div id="https://www.notion.so/014f646729184bd3841845d4602becf6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">此版本重点关注以下内容:</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/72b461e957a94dcc9e00a69c04c87a3a" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">通过持久缓存提高构建性能.</span></span></li><li id="https://www.notion.so/70770385a7844c499357a5d4cfd7f39c" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">使用更好的算法和默认值来改善长期缓存.</span></span></li><li id="https://www.notion.so/d1b8564041f143b9a4bd2e54909afda6" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">通过更好的树摇和代码生成来改善捆绑包大小.</span></span></li><li id="https://www.notion.so/1c95c272e0024ef6b7a975632d4cb646" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">清除处于怪异状态的内部结构，同时在 v4 中实现功能而不引入任何重大更改.</span></span></li><li id="https://www.notion.so/848f2e8968be4175a910d16829fa2216" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">通过引入重大更改来为将来的功能做准备，以使我们能够尽可能长时间地使用 v5.</span></span></li></ul><h2 id="https://www.notion.so/fa9a3bf700c4480bb2c69cbe14a230c0" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/fa9a3bf700c4480bb2c69cbe14a230c0"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">下载</span></span></h2><div id="https://www.notion.so/db358a70cae54f4db78d407b61860669" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">npm i webpack@next webpack-cli -D</span></span></p></div><h2 id="https://www.notion.so/ef7209236f334e68abd535ca04359b17" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/ef7209236f334e68abd535ca04359b17"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">自动删除 Node.js Polyfills</span></span></h2><div id="https://www.notion.so/99859b13fce748338823877bf7d0a1b2" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">早期，webpack 的目标是允许在浏览器中运行大多数 node.js 模块，但是模块格局发生了变化，许多模块用途现在主要是为前端目的而编写的。webpack &lt;= 4 附带了许多 node.js 核心模块的 polyfill，一旦模块使用任何核心模块（即 crypto 模块），这些模块就会自动应用。</span></span></p></div><div id="https://www.notion.so/ad96581582464d728e7db224c8504ea3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">尽管这使使用为 node.js 编写的模块变得容易，但它会将这些巨大的 polyfill 添加到包中。在许多情况下，这些 polyfill 是不必要的。</span></span></p></div><div id="https://www.notion.so/a460d6133420413a9e0ff1dc0b505455" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack 5 会自动停止填充这些核心模块，并专注于与前端兼容的模块。</span></span></p></div><div id="https://www.notion.so/527c608a9daa487e9870822ae6be8b77" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">迁移：</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/10336f4527be4a1d95a40cf958b7b6d1" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">尽可能尝试使用与前端兼容的模块。</span></span></li><li id="https://www.notion.so/94f1d27854474cf9a35826961df6b7cc" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">可以为 node.js 核心模块手动添加一个 polyfill。错误消息将提示如何实现该目标。</span></span></li></ul><div id="https://www.notion.so/63e27fe2deb24db0875aabcb3ee12750" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Chunk 和模块 ID</span></span></p></div><div id="https://www.notion.so/bfdd9161dfed414ebce765fa057f18ca" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">添加了用于长期缓存的新算法。在生产模式下默认情况下启用这些功能。</span></span></p></div><pre id="https://www.notion.so/3e0d24ab350e49b292d374341b65052f" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>chunkIds: &quot;deterministic&quot;, moduleIds: &quot;deterministic&quot;
+</span></span></span></code></pre><h2 id="https://www.notion.so/567c44d59e514f81a86ff001ce772202" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/567c44d59e514f81a86ff001ce772202"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Chunk ID</span></span></h2><div id="https://www.notion.so/ca909c2b568540cda2dfe02e737c3f71" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">你可以不用使用 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">import(/* webpackChunkName: &quot;name&quot; */ &quot;module&quot;)</code></span><span class="SemanticString"> 在开发环境来为 chunk 命名，生产环境还是有必要的</span></span></p></div><div id="https://www.notion.so/92a626e97d1141ea8b977288755f70b8" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack 内部有 chunk 命名规则，不再是以 id(0, 1, 2)命名了</span></span></p></div><h2 id="https://www.notion.so/9aa71c1e182049ce94e2d6f89bd31d76" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/9aa71c1e182049ce94e2d6f89bd31d76"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Tree Shaking</span></span></h2><ol class="NumberedListWrapper"><li id="https://www.notion.so/46c61c1156cd44ad96c431c0d3970ddd" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">webpack 现在能够处理对嵌套模块的 tree shaking</span></span></li></ol><pre id="https://www.notion.so/d2156836a4c2441a9d8871a421687763" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>// inner.js
+export const a = 1;
+export const b = 2;
+
+// module.js
+import * as inner from &#x27;./inner&#x27;;
+export { inner };
+
+// user.js
+import * as module from &#x27;./module&#x27;;
+console.log(module.inner.a);
+</span></span></span></code></pre><div id="https://www.notion.so/1eb86b543dcd4ba6aebf5aee2838a626" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">在生产环境中, inner 模块暴露的 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">b</code></span><span class="SemanticString"> 会被删除</span></span></p></div><ol class="NumberedListWrapper"><li id="https://www.notion.so/2fa24baa9b324efe83de8aff02613f81" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">webpack 现在能够多个模块之前的关系</span></span></li></ol><pre id="https://www.notion.so/65f3d6425d694e79abe206844c339738" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>import { something } from &#x27;./something&#x27;;
+
+function usingSomething() {
+  return something;
+}
+
+export function test() {
+  return usingSomething();
+}
+</span></span></span></code></pre><div id="https://www.notion.so/9d14e737c0eb4a588f95fa5de89e6650" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">当设置了</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">&quot;sideEffects&quot;: false</code></span><span class="SemanticString">时，一旦发现</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">test</code></span><span class="SemanticString">方法没有使用，不但删除</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">test</code></span><span class="SemanticString">，还会删除</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">&quot;./something&quot;</code></span></span></p></div><ol class="NumberedListWrapper"><li id="https://www.notion.so/7d2c3f4a5ed84f289e3a0eded16c006a" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">webpack 现在能处理对 Commonjs 的 tree shaking</span></span></li></ol><h2 id="https://www.notion.so/9768c196d69245828150026cebfa2b1b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/9768c196d69245828150026cebfa2b1b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Output</span></span></h2><div id="https://www.notion.so/9ed8bf08bab14deb9356fbf3ec7a44d8" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack 4 默认只能输出 ES5 代码</span></span></p></div><div id="https://www.notion.so/641ddd2a9be147a58222e4372ff0ef4d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">webpack 5 开始新增一个属性 output.ecmaVersion, 可以生成 ES5 和 ES6 / ES2015 代码.</span></span></p></div><div id="https://www.notion.so/15b8de824bec419b91691e5305ea3653" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">如：</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">output.ecmaVersion: 2015</code></span></span></p></div><div id="https://www.notion.so/48596664f58949fcbb3273a5c58cb68a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">SplitChunk</span></span></p></div><pre id="https://www.notion.so/6c7f88af062248c1812f402443fb4b29" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>// webpack4
+minSize: 30000;
+// webpack5
+minSize: {
+  javascript: 30000,
+  style: 50000,
+}
+</span></span></span></code></pre><h2 id="https://www.notion.so/acc0bb20ff5e4f4ea364ad29315e3fef" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/acc0bb20ff5e4f4ea364ad29315e3fef"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Caching</span></span></h2><pre id="https://www.notion.so/0067b490d01641ca80f79d51aa5934ff" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>// 配置缓存
+cache: {
+  // 磁盘存储
+  type: &quot;filesystem&quot;,
+  buildDependencies: {
+    // 当配置修改时，缓存失效
+    config: [__filename]
+  }
+}
+</span></span></span></code></pre><div id="https://www.notion.so/9737226426a140f3bd4fcfe6bc3e85a6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">缓存将存储到 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">node_modules/.cache/webpack</code></span></span></p></div><h2 id="https://www.notion.so/582761936ab649d68f1744fb40d5c7ef" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/582761936ab649d68f1744fb40d5c7ef"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">监视输出文件</span></span></h2><div id="https://www.notion.so/5073039b7dfa496594ff78669bca4523" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">之前 webpack 总是在第一次构建时输出全部文件，但是监视重新构建时会只更新修改的文件。</span></span></p></div><div id="https://www.notion.so/1eb44f67f4fe4e7a974392b2fe37d546" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">此次更新在第一次构建时会找到输出文件看是否有变化，从而决定要不要输出全部文件。</span></span></p></div><h2 id="https://www.notion.so/b3fc003d166047479efe7f9dbfabb932" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/b3fc003d166047479efe7f9dbfabb932"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">默认值</span></span></h2><ul class="BulletedListWrapper"><li id="https://www.notion.so/4574dc39221948b5b4bcc217f3faa7ee" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">entry: &quot;./src/index.js</code></span><span class="SemanticString"></span></span></li><li id="https://www.notion.so/8d01fe8d9cd54a498d59145e0b41a1de" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">output.path: path.resolve(__dirname, &quot;dist&quot;)</code></span><span class="SemanticString"></span></span></li><li id="https://www.notion.so/c0ed04e68bd74a39b0f36d3572f8f706" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">output.filename: &quot;[name].js&quot;</code></span><span class="SemanticString"></span></span></li></ul><h2 id="https://www.notion.so/72e3e427e2dc4780986a928e75a0d433" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/72e3e427e2dc4780986a928e75a0d433"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">更多内容</span></span></h2><div id="https://www.notion.so/4124081cd4ce47e6916a1df52a452f82" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="https://github.com/webpack/changelog-v5">github</a></span></span></p></div><h1 id="https://www.notion.so/7781c6d5be0e4c3d96698b47012fc2df" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/7781c6d5be0e4c3d96698b47012fc2df"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">参考</span></span></h1><div id="https://www.notion.so/0583e2fa00374f8f845506fc617510d9" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="https://www.bilibili.com/video/BV1e7411j7T5?p=1">尚硅谷2020最新版Webpack5实战教程(从入门到精通)</a></span></span></p></div></article>
+  <footer class="Footer">
+  <div>&copy; Notablog 2019-2021</div>
+  <div>&centerdot;</div>
+  <div>Powered by <a href="https://github.com/dragonman225/notablog" target="_blank"
+      rel="noopener noreferrer">Notablog</a>.
+  </div>
+</footer>
+</body>
+
+</html>

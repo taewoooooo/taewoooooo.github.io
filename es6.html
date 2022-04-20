@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- Chrome, Firefox OS and Opera Status Bar Color -->
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+<link rel="stylesheet" type="text/css" href="css/SourceSansPro.css">
+<link rel="stylesheet" type="text/css" href="css/theme.css">
+<link rel="stylesheet" type="text/css" href="css/notablog.css">
+<!-- Favicon -->
+
+  <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;📖&lt;/text&gt;&lt;/svg&gt;">
+
+<style>
+  :root {
+    font-size: 20px;
+  }
+</style>
+  <title>ES6&nbsp;|&nbsp;Notablog</title>
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="ES6">
+  
+  
+  <style>
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+  <a href="index.html">
+    <div class="Navbar__Btn">
+      
+        <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;📖&lt;/text&gt;&lt;/svg&gt;"></span>&nbsp;
+      
+      <span>Home</span>
+    </div>
+  </a>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <span class="Navbar__Delim">&centerdot;</span>
+      <a href="about.html">
+        <div class="Navbar__Btn">
+          
+            <span><img class="inline-img-icon" src="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;😀&lt;/text&gt;&lt;/svg&gt;"></span>&nbsp;
+          
+          <span>About</span>
+        </div>
+      </a>
+    
+  
+    
+  
+</nav>
+  <header class="Header">
+    
+    <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+    
+    <h1 class="Header__Title">ES6</h1>
+    
+      <div class="DateTagBar">
+        
+          <span class="DateTagBar__Item DateTagBar__Date">Posted on Sat, Apr 2, 2022</span>
+        
+        
+      </div>
+    
+  </header>
+  <article id="https://www.notion.so/67014eb1cb554c53ba26424cf28c4d2f" class="PageRoot"><div id="https://www.notion.so/cf2b4241a1c042c2a00a7d626434676a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">ES是ECMAScript，由Ecma国际退出的脚本程序设计语言</span></span></p></div><div id="https://www.notion.so/a252e52eae984452af41bac4d0d19380" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">ES6变动内容最多，具有里程碑意义；加入许多新语法特性，编程简洁高效；是前端发展趋势</span></span></p></div><h1 id="https://www.notion.so/e115eec2415e4948910fe1b9ee2e950f" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" href="#https://www.notion.so/e115eec2415e4948910fe1b9ee2e950f"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">ES6</span></span></h1><h2 id="https://www.notion.so/a1f06aaebc6a40bc9722d5d5734f24cd" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/a1f06aaebc6a40bc9722d5d5734f24cd"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">let关键字</span></span></h2><div id="https://www.notion.so/1f9cc98cc7ff4cb0908a3591299014ed" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">声明变量 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">let a = 111;</code></span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/b9e152c8575f44dcb835e14e1c5b9f95" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">不能重复声明一个变量</span></span><div id="https://www.notion.so/f3bd5d2f7ab64f18b4ec15bc1e9e1cd7" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">let a = 1; let a = 2;</code></span></span></p></div></li><li id="https://www.notion.so/881ac1e1a17e477bad1cbde3443abfbc" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">块级作用域</span></span><pre id="https://www.notion.so/0dfdc7cb8abf4b5ca9860c6d6a269f71" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//var可以在代码块外访问
+{var a = 1;}
+console.log(a); // 1
+//let 不可以在代码块外访问
+{let b = 1;}
+console.log(b); //error</span></span></span></code></pre></li><li id="https://www.notion.so/ed4fb6cae1724b2ba51bb39221eff4ef" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">不存在变量提升</span></span><pre id="https://www.notion.so/1d7302e469134751bf2a1a0c58fcaf19" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//var 存在变量提升
+console.log(a); //undefined
+var a = 1;
+
+//let不存在变量提升
+console.log(b); //error
+let b = 1;</span></span></span></code></pre></li><li id="https://www.notion.so/0db5208b4a9f40b7a2bcd7c63680d91f" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">不影响作用域链</span></span></li></ul><div id="https://www.notion.so/1e79da9f075b423280a3ea800af49de3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">let解决for循环嵌套回调函数问题</span></span></p></div><pre id="https://www.notion.so/ec61bda825fa4e698589b6d73f0f5e4c" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>for(let i = 0; i &lt; btns.length; i++){
+  btns[i].onclick = function(){
+    this.style.background = &quot;pink&quot;; //正确
+    btns[i].style.background = &quot;pink&quot;;//let正确, var不正确
+  }
+}</span></span></span></code></pre><h2 id="https://www.notion.so/cf9ba79ebaee4d69a1cddc606062f9b0" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/cf9ba79ebaee4d69a1cddc606062f9b0"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">const关键字</span></span></h2><div id="https://www.notion.so/b8d8efbc94764d328c059d0f0816f1be" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">声明常量 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">const A = 1;</code></span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/3c0f5d189f60419da7fd59f708154e69" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">一定要在声明时赋值</span></span></li><li id="https://www.notion.so/08acb0b5891d447e92b4a5af3f8eb871" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">一般使用大写命名变量名</span></span></li><li id="https://www.notion.so/ea817bc041ef42fb82b6e0efda55123f" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">常量的值不能修改</span></span></li><li id="https://www.notion.so/116bc0d3e3e74fb78f1417ad34fea44b" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">块级作用域</span></span></li><li id="https://www.notion.so/e367c746dc504596b60782e3346d492a" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">对于数组和对象中的</span><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">元素</strong></span><span class="SemanticString">可以修改，而指向的</span><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">地址</strong></span><span class="SemanticString">不能修改</span></span></li></ul><h2 id="https://www.notion.so/21c68e2e0a8e4ac683b161e77059d0ab" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/21c68e2e0a8e4ac683b161e77059d0ab"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">解构赋值</span></span></h2><div id="https://www.notion.so/4bb3825a48d34a6e8f171105a944b52f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">允许按照一定模式从数组和对象中提取值，对变量进行赋值</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/ddc580d5bdba4a16a2883f4074042e94" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">数组的解构</span></span><pre id="https://www.notion.so/64f0db06c74f4069a685bad16450fae6" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const arr = [1, 2, 3, 4];
+let [a, b, c, d] = arr; //a=1,b=2,c=3,d=4</span></span></span></code></pre></li><li id="https://www.notion.so/06bdaeb93e6842f596333c2b0417c784" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">对象的结构</span></span><pre id="https://www.notion.so/02899ede2c454180aef8278f93d8987e" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const obj = {
+  name: &quot;qty&quot;,
+  age: 24,
+  sayName: function(name){
+    alert(name);
+  }
+};
+let {name, age, sayName} = obj;//name=&quot;qty&quot;,age=24,sayName=function(name){alert(name)};
+let {name} = obj;    //寻找obj中的同名属性进行赋值</span></span></span></code></pre></li></ul><h2 id="https://www.notion.so/75224d58fea04eec8666e945452cbc0f" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/75224d58fea04eec8666e945452cbc0f"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">模板字符串</span></span></h2><div id="https://www.notion.so/853d6856932744688297547a0573c207" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">声明字符串的新的方式 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">` `</code></span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/27990c46d40042b0bb3dae9c8f18efb3" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">声明 </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">let str = `我是一个字符串`;</code></span></span></li><li id="https://www.notion.so/ade8afeed9674c009fbfec42b799a81c" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">内容中可以直接出现换行符</span></span><pre id="https://www.notion.so/2347cc12371f45a581aa1fce8aae31ee" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let str = `我是
+          你爹
+          换行换行再换行`;</span></span></span></code></pre></li><li id="https://www.notion.so/a00f2b605cbc4d02baef4054158b8510" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">允许出现变量</span></span><pre id="https://www.notion.so/4763be7174684574876187b9aa46d26e" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let name = `qty`;
+let str = `你好啊${name}`;</span></span></span></code></pre></li></ul><h2 id="https://www.notion.so/094a3102093447de97d9529536bd0b87" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/094a3102093447de97d9529536bd0b87"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">对象的简化写法</span></span></h2><div id="https://www.notion.so/538d50966bef455d8687e8e62ee75850" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">可以在大括号中直接写入变量和函数，将其作为属性和方法</span></span></p></div><div id="https://www.notion.so/78a83c2b203b4b698408b4ecb1018375" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">可以缩减方法的定义</span></span></p></div><pre id="https://www.notion.so/58c4d71ec86c479f99059fe4693fa019" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let name = &quot;aa&quot;;
+let f1 = function(){};
+
+let obj = {
+  name,
+  f1,
+  f2(){  //简化方法定义
+    console.log(this.name);
+  }
+};</span></span></span></code></pre><h2 id="https://www.notion.so/99ca6aeedde849b6825d7dbfa314e401" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/99ca6aeedde849b6825d7dbfa314e401"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">箭头函数</span></span></h2><ul class="BulletedListWrapper"><li id="https://www.notion.so/a8ece57e1d10458ebe7878013affc650" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">声明</span></span><pre id="https://www.notion.so/4405887d791d44cb91d49b410c86051f" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//以前
+let fn = function(name){
+  alert(name);
+};
+//箭头函数
+let fn = (name) =&gt; {
+  alert(name);
+};</span></span></span></code></pre></li><li id="https://www.notion.so/2aab31710c414b1ab425fde2e5d3ca9b" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">this是静态的始终指向定义该函数时所在的作用域下this的值，call和方法调用都不能改变this指向</span></span></li><li id="https://www.notion.so/4cef109d5f674712943741dd303c836f" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">不能作为构造函数实例化对象</span></span></li><li id="https://www.notion.so/2c25d233f3724ee391262d8a807a100e" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">不能使用arguments变量</span></span></li><li id="https://www.notion.so/4c33db26c3c846ab8ce6a29d3af11b86" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">当形参有且只有一个时，可以省略小括号
+当代码体只有一行时，return必须省略，且语句执行结果就是函数返回值</span></span><div id="https://www.notion.so/f0686b2aaba942b3894ba6a9f7518f37" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">let fn = a =&gt; a*a;</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">//return a*a</code></span></span></p></div></li></ul><h2 id="https://www.notion.so/ed4aac6c9d4f4a6286c589be158b7cf0" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/ed4aac6c9d4f4a6286c589be158b7cf0"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">函数参数默认值</span></span></h2><ul class="BulletedListWrapper"><li id="https://www.notion.so/7ae2b61a6247441cabf40f2ac15eb304" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">默认参数尽量放在最后面</span></span><pre id="https://www.notion.so/8ab31037a4864ed089ef71e6719e0345" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>function fn(a, b=2){
+  return a+b
+};
+let s1 = fn(1); //不传参数用默认形参
+let s2 = fn(3,4); //传了就用传的</span></span></span></code></pre></li><li id="https://www.notion.so/ef0e9a2b8c4e44e3a764026d8f17919a" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">与解构赋值结合</span></span><pre id="https://www.notion.so/f528e19500dd4e86b1631d27474a9007" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//对象解构赋值
+function fn({name,age,sex}){
+  console.log(name);
+}
+//传入对象
+ fn({
+   name: &quot;qty&quot;,
+   age: 18,
+   sex: male
+ });</span></span></span></code></pre></li></ul><h2 id="https://www.notion.so/9dbdc0021da2473089295ca9f9c828b8" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/9dbdc0021da2473089295ca9f9c828b8"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">rest参数</span></span></h2><ul class="BulletedListWrapper"><li id="https://www.notion.so/bc43522a7c604e6db0c02f0154cf6fa1" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">获取函数的实参，代替arguments</span></span></li><li id="https://www.notion.so/08725bf9bc8e4cf298bdbd77560862bc" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">...</code></span><span class="SemanticString">放在函数定义的形参列表中</span></span></li><li id="https://www.notion.so/8b2a5b55005647539fe523a3699422c7" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">rest参数必须放在最后</span></span></li><li id="https://www.notion.so/f09cd0e3b19f4e65b8575eb11fee04a9" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">rest是数组，而arguments是伪数组</span></span></li></ul><pre id="https://www.notion.so/0ef37f51a74843a293e622f1f97614b4" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>function date(a, b, ...agrs){
+  console.log(args); // agrs = [&quot;c&quot;, &quot;d&quot;]
+}
+date(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;);</span></span></span></code></pre><h2 id="https://www.notion.so/25d386ad46ff46579087cca58b35ca59" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/25d386ad46ff46579087cca58b35ca59"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">扩展运算符</span></span></h2><ul class="BulletedListWrapper"><li id="https://www.notion.so/142f5a0f274d4cb0b12484f80e60f265" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">将数组转化为逗号分隔的参数序列</span></span></li></ul><pre id="https://www.notion.so/77c1508c5b3b44858656df6cb2f5ff26" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;];
+function fn(){
+  console.log(arguments);
+}
+
+fn(...arr); //传入的arr不再是数组，而是参数序列 arguments = a,b,c,d</span></span></span></code></pre><div id="https://www.notion.so/0f2d9c500a4847a89180517109f7275d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">合并数组</span></span></p></div><pre id="https://www.notion.so/824273f4d6ba4274be5a4a293bebc518" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+//concat合并
+const res1 = arr1.concat(arr2);
+//扩展运算符合并
+const rees2 = [...arr1, ...arr2];</span></span></span></code></pre><div id="https://www.notion.so/015d59c4af2b4a85b1fb36b55659f27f" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">克隆数组</span></span></p></div><pre id="https://www.notion.so/a3360e93920a4360b5d733dd209afdc4" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const arr1 = [1, 2 ,3];
+const arr2 = [...arr1];</span></span></span></code></pre><div id="https://www.notion.so/3084c5eb886249c09c1474f473c1e4a8" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">伪数组转为真数组</span></span></p></div><pre id="https://www.notion.so/1c82b259b9734c7b883b8ac1174d6e3f" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const divs = documents.getELementsByTagName(&quot;div&quot;); //伪数组
+const arr = [...divs]; //真数组</span></span></span></code></pre><h2 id="https://www.notion.so/3b6519e179b14ac3aead24dd72019615" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/3b6519e179b14ac3aead24dd72019615"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Symbol类型</span></span></h2><ul class="BulletedListWrapper"><li id="https://www.notion.so/f67049befe5e47bb822fa6fbe820ae2f" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">symbo值唯一</span></span></li><li id="https://www.notion.so/ff2e9b89dd1a4c6e8847dceaf279060c" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">symbol值不与其他数据进行运算</span></span></li><li id="https://www.notion.so/12c6bd13c25b4cf7915e3de387a292f4" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">symbol定义的对象属性不能用for...in遍历，可以使用Reflect.ownKeys来获取对象的所有键名</span></span></li></ul><pre id="https://www.notion.so/88c6d5edb2dd470e90e16fd7296e19e9" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//不传入参数创建
+let s1 = Symbol();
+//传入参数创建
+let s2 = Symbol(&quot;a&quot;);
+let s3 = symbol(&quot;a&quot;);
+console.log(s2 === s3); //false, symbol值唯一
+//Symbol.for()创建
+let s4 = Symbol.for(&quot;b&quot;);
+let s5 = Symbol.for(&quot;b&quot;);
+console.log(s4 === s5); //true，for创建的参数和值一一对应</span></span></span></code></pre><ul class="BulletedListWrapper"><li id="https://www.notion.so/31cb2074ff8f4d82b39f18add8f1bcd4" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">应用 - 给对象安全添加属性和方法</span></span><pre id="https://www.notion.so/90f2e33d6dd34862a50cc3b1025ad696" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let obj = {
+    name: &quot;aa&quot;,
+    age: 18
+};
+let name = Symbol();
+obj[name] = &quot;bb&quot;; //防止属性名冲突，安全的添加name属性
+console.log(obj.name, obj[name]);</span></span></span></code></pre></li></ul><h3 id="https://www.notion.so/a69a84273a364b28ab8466c581fef85e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/a69a84273a364b28ab8466c581fef85e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Symbol内置值（属性）</span></span></h3><div id="https://www.notion.so/5b1e6e31495746cfb783c01dd696d3f5" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="https://blog.csdn.net/c__dreamer/article/details/81873087">JavaScriptES6内置的Symbol值_c__dreamer的博客-CSDN博客</a></span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/a7a54c8713a648ddae9c76ac42da31d0" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Symbol.hasInstance</span></span><pre id="https://www.notion.so/7f81838f78a94a1a9889323f3b6b8963" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>class Person{
+  static [Symbol.hasInstance](a){ //在调用instanceof检测实例对象是否属于Person时触发
+    console.log(a); //可以传入参数，参数为要判断类型的实例对象
+    return false; //可以设置返回结果
+  }
+}
+
+let obj = {};
+console.log(obj instanceof Person);</span></span></span></code></pre></li><li id="https://www.notion.so/0912deae4c8b4300840a2b549207d8f6" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Symbol.isConcatSpreadable</span></span><pre id="https://www.notion.so/0fa14367bc0f4c388a849bde29fc522a" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+arr2[Symbol.isConcatSpreadable] = false; //设置不展开加入的数组元素
+const res = arr1.concat(arr2);  //res = [1, 2, 3, (4, 5, 6)]</span></span></span></code></pre></li></ul><h2 id="https://www.notion.so/1a666e49bd6b4c0d93ff6d4b2f7cb619" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/1a666e49bd6b4c0d93ff6d4b2f7cb619"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">迭代器</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Iterator</code></span></span></h2><div id="https://www.notion.so/0640e73fdb18461b90f44a304a910934" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">任何数据结构只要部署Iterator接口就可以使用迭代器遍历</span></span></p></div><div id="https://www.notion.so/5b47ad8e92604f82966e37439794b658" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">用于ES6创建的</span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">for...of</code></span><span class="SemanticString">循环</span></span></p></div><div id="https://www.notion.so/f2711dc185aa4515aa39089516563c43" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">原生具备iterator接口的数据： </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Array</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Arguments</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Set</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">Map</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">String</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">TypedArray</code></span><span class="SemanticString"> </span><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">NodeList</code></span></span></p></div><div id="https://www.notion.so/a414d936b6d84f66952d684c118d2b80" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">工作原理：</span></span></p></div><ol class="NumberedListWrapper"><li id="https://www.notion.so/2872d3924f0a4987ae7edc19a1b657f2" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">创建一个指针对象指向当前数据结构的起始位置</span></span></li><li id="https://www.notion.so/a27baf5a00e643448a1625913e8d81fc" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">第一次调用对象的next方法，指针自动指向数据结构的第一个成员</span></span></li><li id="https://www.notion.so/2191e4fc75e941eb8640da07ca9a6a36" class="NumberedList" value="3"><span class="SemanticStringArray"><span class="SemanticString">之后调用next指针会一直往后移，直到指向最后一个成员</span></span></li><li id="https://www.notion.so/4fa3a8ed3a85454fa10e8e0e37217d09" class="NumberedList" value="4"><span class="SemanticStringArray"><span class="SemanticString">每次调用next方法返回一个包含value和done属性的对象</span></span></li></ol><pre id="https://www.notion.so/f20eb094a6204faa99e01ef20f95b192" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const arr = [1, 2, 3, 4];
+//for...of遍历
+for(let a of arr){
+  console.log(a); //输出1， 2， 3， 4
+}
+//手动迭代返回对象
+let iterator = arr[Symbol.iterator]();
+console.log(iterator.next()); //1
+console.log(iterator.next()); //2
+console.log(iterator.next()); //3
+console.log(iterator.next()); //4</span></span></span></code></pre><div id="https://www.notion.so/40d1f899600d42f398f8c87ef4aa79da" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">应用- 自定义遍历数据</span></span></p></div><pre id="https://www.notion.so/7ddd6c67be6042a997fcd69bd29993c5" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const obj = {
+  name: &quot;qty&quot;,
+  age: 18,
+  arr: [1, 2, 3, 4],
+  //添加迭代器
+  [Symbol.iterator](){
+    let index = 0;
+    let _this = this;
+    return {
+      next: function(){ //里面不能直接用this，因为对象里面的this指向对象
+        if(index &lt; _this.arr.length){
+          return {value: _this.arr[index++], done: false};
+        }else{
+          return {value: undefined, done: true};
+        }
+      }
+    };
+  }
+};
+//要求for...of每次遍历arr中的元素
+for(let a of obj){
+  console.log(a);
+}
+</span></span></span></code></pre><h2 id="https://www.notion.so/641b16e68ad54712ac97857ed42f7931" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/641b16e68ad54712ac97857ed42f7931"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">生成器</span></span></h2><div id="https://www.notion.so/6475efb2d165401698d6d5b52dc0a3fd" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">是一个函数，一种异步编程解决方案</span></span></p></div><pre id="https://www.notion.so/4139d1c459b44fb78ac2583b74e50f9e" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>function * gen(){
+  //三个yield将代码块分成四部分，用next依次执行
+  console.log(&quot;第一段&quot;);
+  let one = yield &quot;aa&quot;;
+  console.log(one);
+  let two = yield &quot;bb&quot;;
+  console.log(two);
+  let three = yield &quot;cc&quot;;
+  console.log(three);
+}
+let iterator = gen(); //返回的是迭代器实例对象，此时无法执行函数内的代码
+
+
+//依次执行四部分代码片段，next里面可以传参数，用于设置前面一个yield的值
+console.log(iterator.next());  //执行第一段代码 + 返回第一个yield后面的变量，并将其作为对象
+console.log(iterator.next(&quot;ssss&quot;));  //执行第二段代码 + 返回第二个yield后面的变量，并将其作为对象,one=&quot;ssss&quot;
+console.log(iterator.next(&quot;sss&quot;)); //two = &quot;sss&quot;
+console.log(iterator.next());
+
+//for...of遍历
+for(let r of iterator){
+  console(r); //返回yield中的变量做为对象，同时执行代码块语句
+}</span></span></span></code></pre><h3 id="https://www.notion.so/9dc51f1ccb2343cb8dc8801a35dc5305" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/9dc51f1ccb2343cb8dc8801a35dc5305"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">生成器案例</span></span></h3><div id="https://www.notion.so/62437ae478a249d5943a9606645b69e1" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">1秒后输出111，2秒后输出222，3秒后输出333</span></span></p></div><pre id="https://www.notion.so/82a0c136dd5a4f5d908598e80f4e1391" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//回调地狱
+setTimeout(() =&gt; {
+  alert(&quot;111&quot;);
+  setTimeout(() =&gt; {
+    alert(&quot;222&quot;);
+    setTimeout(() =&gt; {
+      alert(&quot;333&quot;);
+    }, 3000);
+  },2000);
+}, 1000);
+
+
+function one(){
+  setTimeout(() =&gt; {
+    alert(&quot;111&quot;);
+    iterator.next();
+  }, 1000);
+}
+function two(){
+  setTimeout(() =&gt; {
+    alert(&quot;222&quot;);
+    iterator.next();
+  }, 2000);
+}
+function three(){
+  setTimeout(() =&gt; {
+    alert(&quot;333&quot;);
+    iterator.next();
+  }, 3000);
+}
+function * gen(){
+  yield one();
+  yield two();
+  yield three();
+}
+
+let iterator = gen();
+iterator.next();</span></span></span></code></pre><h2 id="https://www.notion.so/47ba1af41da446d9b7abbe1b8ab9f5ac" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/47ba1af41da446d9b7abbe1b8ab9f5ac"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Promise</span></span></h2><div id="https://www.notion.so/0bfd530ffa27485da5e1a3a9c2057a7e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">ES6引入的异步编程解决方案，是一个构造函数</span></span></p></div><div id="https://www.notion.so/53411ac56f4b45aba78f8bb29e87bf13" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">实例化Promise对象</span></span></p></div><pre id="https://www.notion.so/19ab18553b384ef39804edaf1377b5f3" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const p = new Promise(function(resolve, rejcet){
+  setTimeout(function(){
+      let data = &quot;data&quot;;
+    //成功时调用resolve
+    resolve(data);
+    //失败时调用reject
+    reject(data);
+  }, 1000);
+});
+
+//then的第一个参数是成功时执行的函数，对应构造函数中返回resolve()
+//第二个是失败时执行的函数,对应构造函数中返回reject()
+p.then(function(value){
+  console.log(value);
+}, funtion(reason){
+  console.error(reason);
+});</span></span></span></code></pre><div id="https://www.notion.so/bbfbe3a44b99454abc21b72118c42ff5" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Promise读取文件</span></span></p></div><pre id="https://www.notion.so/08d1446ee5c040deaf06c87b1ba2df57" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>//1.引入fs模块（node.js）
+const fs = require(&quot;fs&quot;);
+//2.调用方法读取文件
+fs.readFile(&quot;./1.txt&quot;, (err, data)=&gt;{
+  if(err)
+    throw err;
+  console.log(data.toString());
+});
+
+
+//Promise封装
+const p = new Promise(function(resolve, reject){
+  fs.readFile(&quot;./1.txt&quot;, (err, data)=&gt;{
+    if(err)
+      reject(err);
+    resolve(data);
+  })
+});
+p.then(function(value){
+  console.log(value);
+},function(reason){
+  console.error(reason);
+});</span></span></span></code></pre><div id="https://www.notion.so/5ef26fcca22d48799f9a1d55859a6443" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Promise封装AJAX请求</span></span></p></div><pre id="https://www.notion.so/77f62bf855b94719ab678e57aee431c1" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>const p = new Promise(function(resolve, reject){
+  const xhr = new XMLHttpRequest();
+  xhr.open(&quot;GET&quot;, &quot;./1.php&quot;);
+  xhr.send();
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4){
+      if(xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300 || xhr.status == 304)
+        resolve(xhr.responseText);
+      else
+        reject(xhr.status);
+    }
+  }
+});
+
+p.then(function(value){
+  console.log(value);
+}, function(reason){
+  console.error(reason);
+});
+</span></span></span></code></pre><h2 id="https://www.notion.so/4fb8907bc20b409a8cf21a403a6e7cda" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/4fb8907bc20b409a8cf21a403a6e7cda"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Set集合</span></span></h2><div id="https://www.notion.so/ddf86a7cd3384ffc804e120ccd0357f9" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">let  s = new Set([1, 2, 3, 4, 1]);</code></span><span class="SemanticString"> //只有1, 2, 3, 4，自动去重</span></span></p></div><div id="https://www.notion.so/8febf1ed5eb64cf7834e1e2dc2c470a4" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">s.size</code></span><span class="SemanticString"> 元素个数</span></span></p></div><div id="https://www.notion.so/7012eefeb84045e5aa6577182c481cad" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">s.add(5) </code></span><span class="SemanticString">添加元素</span></span></p></div><div id="https://www.notion.so/8e363e89e2ce4fbebca6fab58587bd7d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">s.delete(1)</code></span><span class="SemanticString"> 删除元素</span></span></p></div><div id="https://www.notion.so/bcc93edf45724d24bc46c9dd91443d77" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">s.has(3)</code></span><span class="SemanticString"> 检测是否有该元素</span></span></p></div><div id="https://www.notion.so/8879d23a6013420d85d8605464afb82b" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">s.clear()</code></span><span class="SemanticString"> 清空集合元素</span></span></p></div><div id="https://www.notion.so/42315f12925f475c8c97cb3ded22241c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">for(let a of s) </code></span><span class="SemanticString">遍历集合</span></span></p></div><div id="https://www.notion.so/698bb6905cf74e7ebe688e0e82ab4d23" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">数组去重</span></span></p></div><pre id="https://www.notion.so/92fc9b23db454027aa8f8d5846f999c4" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let arr = [1, 2, 1];
+let res = [...new Set(arr)];</span></span></span></code></pre><h3 id="https://www.notion.so/00d415b0083c4d7383ad5b52f01aa5fb" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" href="#https://www.notion.so/00d415b0083c4d7383ad5b52f01aa5fb"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">数组交集</span></span></h3><div id="https://www.notion.so/c5ec0e72c091433ca456de2bb9cd4186" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="https://www.runoob.com/jsref/jsref-filter.html">数组中filter方法</a></span></span></p></div><pre id="https://www.notion.so/c9ff18c864e943049276f3107327de16" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let arr1 = [1, 2, 3, 1];
+let arr2 = [1, 4, 2, 2];
+let res = [...new Set(arr1)].filter(item =&gt; new Set(arr2).has(item));</span></span></span></code></pre><div id="https://www.notion.so/c6ba42efcde84d55991240d1d3ee40b0" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">数组并集</span></span></p></div><pre id="https://www.notion.so/1ba02527725444f99d723afb55a82537" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>let arr1 = [1, 2, 3, 1];
+let arr2 = [1, 4, 2, 2];
+let res = [...new Set[...arr1, ...arr2])];</span></span></span></code></pre><h2 id="https://www.notion.so/48bd8f6cbeef43a3ba1f7d4cc319f579" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" href="#https://www.notion.so/48bd8f6cbeef43a3ba1f7d4cc319f579"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Map</span></span></h2><div id="https://www.notion.so/7837a1fac363440f8e51277722b4713c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">m.size</code></span><span class="SemanticString"> 元素个数</span></span></p></div><div id="https://www.notion.so/fe55c95ed4e0455d940cabd0de325c76" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">m.set(&quot;a&quot;,&quot;b&quot;) </code></span><span class="SemanticString">添加键值对，返回Map</span></span></p></div><div id="https://www.notion.so/19b35434298147139f57c3f0a7bfb1ef" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">m.get(&quot;a&quot;)</code></span><span class="SemanticString"> 返回键对应的值</span></span></p></div><div id="https://www.notion.so/3c9cb25b87ed4ae197caceb12077b550" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">m.delete(&quot;a&quot;); </code></span><span class="SemanticString">删除键和对应的值</span></span></p></div><div id="https://www.notion.so/d3bc579a0c764ce39a5f927cdc59f74a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">m.has(&quot;a&quot;)</code></span><span class="SemanticString"> 是否有某个元素</span></span></p></div><div id="https://www.notion.so/5d350b06f5ba435495a723853841dee0" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><code class="SemanticString__Fragment SemanticString__Fragment--Code">m.clear() </code></span><span class="SemanticString">清空元素</span></span></p></div><div id="https://www.notion.so/9f36aa5f28dc4edabb6dd3ced38ecbe1" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">class</span></span></p></div><pre id="https://www.notion.so/0e42b20423e94b369c037081b16dd319" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>class Person{
+  constructor(name, age){//当用new创建时才会调用constructor内容
+    this.name = name;
+    this.age = age;
+  }
+  //class中不能使用sayName: function(name){}这种形式
+  sayName(name){
+    console.log(name);
+  }
+}
+
+let p = new Person(&quot;qty&quot;, 24);</span></span></span></code></pre><div id="https://www.notion.so/53811ff526fa4a89ae07fdb6fee8ca85" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">静态成员</span></span></p></div><pre id="https://www.notion.so/20ec3e7d90d6418496633eae969e933c" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>class Person{
+  static name = &quot;a&quot;;
+  static sayName = name =&gt; console.log(name);
+}
+let p = new Person();
+console.log(p.name); //error ，静态方法不属于实例对象
+console.log(Person.name); //静态方法属于类</span></span></span></code></pre><div id="https://www.notion.so/26d9e182625749d793b8d0b115847ec3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">类继承和重写</span></span></p></div><pre id="https://www.notion.so/69c9139de19045ec9edb739c70f366e3" class="Code"><code><span class="SemanticStringArray"><span class="SemanticString"><span>class Person{
+  constructor(name, age){//当用new创建时才会调用constructor内容
+    this.name = name;
+    this.age = age;
+  }
+  //class中不能使用sayName: function(name){}这种形式
+  sayName(name){
+    console.log(name);
+  }
+}
+class Student extends Person{
+  constructor(name, age, id, grade){
+    super(name, age);
+    this.id = id;
+    this.grade = grade;
+  }
+  sayName(name){ //对父类方法重写
+    console.log(`${name}是真牛逼`);
+  }
+}</span></span></span></code></pre><div id="https://www.notion.so/98a9be8c41034a368bf58985f1fab43a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" href="https://blog.csdn.net/c__dreamer/article/details/81873087">https://blog.csdn.net/c__dreamer/article/details/81873087</a></span></span></p></div></article>
+  <footer class="Footer">
+  <div>&copy; Notablog 2019-2021</div>
+  <div>&centerdot;</div>
+  <div>Powered by <a href="https://github.com/dragonman225/notablog" target="_blank"
+      rel="noopener noreferrer">Notablog</a>.
+  </div>
+</footer>
+</body>
+
+</html>
